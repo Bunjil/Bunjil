@@ -1,0 +1,12 @@
+
+--This line, and those below, will be ignored--
+
+M    bunjil/Gemfile.lock
+M    bunjil/config/routes.rb
+M    bunjil/config/application.rb
+M    bunjil/Gemfile
+M    bunjil/app/assets/javascripts/application.js
+M    bunjil/app/models/feed_item.rb
+M    bunjil/app/models/feed.rb
+M    bunjil/app/controllers/application_controller.rb
+M    bunjil/app/views/layouts/application.html.erb

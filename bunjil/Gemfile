@@ -26,6 +26,12 @@ gem 'nokogiri', '~> 1.4.7'			# Used to parse HTML/XML using native execution. AK
 gem 'feedzirra', '~> 0.0.31' 		# RSS feed parsing
 gem 'delayed_job_active_record'		# Used for background work. Very simple concurrency.
 
+gem "twitter-bootstrap-rails"
+
+# DEVELOPMENT ONLY GEMS.
+# Will shift SQLite3 here once we're going production.
+gem "nifty-generators", :group => :development
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
@@ -40,3 +46,5 @@ gem 'delayed_job_active_record'		# Used for background work. Very simple concurr
 
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
+
+gem "mocha", :group => :test
