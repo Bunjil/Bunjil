@@ -9,16 +9,14 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
     if @user.save
       session[:user_id] = @user.id
-      redirect_to root_url, :notice => "Thank you for signing up! You are now logged in."
+      redirect_to root_url, :success => "Thank you for signing up! You are now logged in."
     else
       @messages = "<h3> Invalid Input </h3> <ul>"
       @user.errors.full_messages.each do |msg|
-        if !msg.empty? 
-          @messages << "<li>"+msg+"</li>"
-        end
+      @messages << "<li>"+msg+"</li>"
       end
       @messages << "</ul>"
-      flash[:error] = @messages
+      flash[:success] = @messages
       render :action => 'new'
     end
   end
@@ -30,7 +28,7 @@ class UsersController < ApplicationController
   def update
     @user = current_user
     if @user.update_attributes(params[:user])
-      redirect_to root_url, :notice => "Your profile has been updated."
+      redirect_to root_url, :success => "Your profile has been updated."
     else
       render :action => 'edit'
     end

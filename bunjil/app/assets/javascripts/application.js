@@ -15,3 +15,8 @@
 //= require twitter/bootstrap
 //= require_tree .
 //= require bootstrap-alert
+$(document).ready(function () {
+          $("div.alert.alert-info.fade.in").delay(2000).slideUp(500);
+          $("div.alert.alert-success.fade.in").delay(2000).slideUp(500);
+});
+
