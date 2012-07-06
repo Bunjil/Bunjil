@@ -11,6 +11,14 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       redirect_to root_url, :notice => "Thank you for signing up! You are now logged in."
     else
+      @messages = "<h3> Invalid Input </h3> <ul>"
+      @user.errors.full_messages.each do |msg|
+        if !msg.empty? 
+          @messages << "<li>"+msg+"</li>"
+        end
+      end
+      @messages << "</ul>"
+      flash[:error] = @messages
       render :action => 'new'
     end
   end

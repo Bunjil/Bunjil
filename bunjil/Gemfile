@@ -7,6 +7,8 @@ gem 'rails', '3.2.2'
 
 gem 'sqlite3'
 
+gem "bcrypt-ruby", :require => "bcrypt"
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -27,6 +29,8 @@ gem 'feedzirra', '~> 0.0.31' 		# RSS feed parsing
 gem 'delayed_job_active_record'		# Used for background work. Very simple concurrency.
 
 gem "twitter-bootstrap-rails"
+gem 'bootstrap-sass'
+
 
 # DEVELOPMENT ONLY GEMS.
 # Will shift SQLite3 here once we're going production.
