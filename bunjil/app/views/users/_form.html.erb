@@ -1,5 +1,19 @@
 <%= form_for @user do |f| %>
-  <%= f.error_messages %>
+  <% if @user.errors.any? %>
+
+    <div class="alert alert-error">  
+
+      <a class="close" data-dismiss="alert">×</a>
+      <h3>Invalid Fields</h3>  
+      <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+      <li> <%= msg %></li>  
+      
+      <% end %>
+      </ul>
+    </div>
+      
+  <% end %>
   <p>
     <%= f.label :username %><br />
     <%= f.text_field :username %>
