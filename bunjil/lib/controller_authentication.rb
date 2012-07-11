@@ -35,6 +35,13 @@ module ControllerAuthentication
     end
   end
 
+  def logout_required
+    unless !logged_in?
+      store_target_location
+      redirect_to root_url, :alert => "You must logout before accessing this page."
+    end
+  end
+
   def redirect_to_target_or_default(default, *args)
     redirect_to(session[:return_to] || default, *args)
     session[:return_to] = nil
