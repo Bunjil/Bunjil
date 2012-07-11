@@ -12,12 +12,15 @@ class UsersController < ApplicationController
       sign_in(@user)
       redirect_to root_url, :success => "Thank you for signing up! You are now logged in."
     else
-      @messages = "<h3> Invalid Input </h3> <ul>"
       @user.errors.full_messages.each do |msg|
-      @messages << "<li>"+msg+"</li>"
+        if flash[:alert].nil?
+          @messageTitle = "Invalid fields"
+          flash[:alert] = msg+"|"
+        else
+           flash[:alert] << msg+"|"
+        end
       end
-      @messages << "</ul>"
-      flash[:success] = @messages
+      
       render :action => 'new'
     end
   end

@@ -1,8 +1,17 @@
 <div>
   <% flash.each do |key, value| %>
     <div class="<%= flash_class(key) %> fade in">
-      <a href="#" data-dismiss="alert" class="close">×</a>
-      <%=raw value %>
+    	<a href="#" data-dismiss="alert" class="close">×</a>
+		  <h3><%= @messageTitle%></h3>
+    	<ul>
+    		<% value.split("|").each do |eachValue| %>
+    	      	<li><%= eachValue %></li>
+    	  <%end%>
+    	</ul>
+    	
     </div>
+
   <% end %>
+  <% flash.clear %> 
+  <!-- have to clear otherwise pressing back will make the flash message persist -->
 </div>
