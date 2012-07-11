@@ -7,10 +7,17 @@
   <div class="container-fluid nav-collapse">
     <ul class="nav">
       <li><%= link_to "Home", "/"  %></li>
-      <li><%= link_to "Sign Up", "/signup"  %></li>
+      <li><%= link_to "About", %></li>
+      <!-- Show when signed in. -->
+      <% if signed_in? %>
       <li><%= link_to "Profile", %></li>
       <li><%= link_to "Area", %></li>
-      <li><%= link_to "About", %></li>
+      <li><%= link_to "Sign Out", "/logout", method: "delete" %></li>
+      <% else %>
+      <li><%= link_to "Sign In", "/login"  %></li>
+      <li><%= link_to "Sign Up", signup_path  %></li>
+      <% end %>
+
 
     </ul>
   </div><!--/.nav-collapse -->
