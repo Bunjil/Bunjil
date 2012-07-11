@@ -10,7 +10,8 @@ Bunjil::Application.routes.draw do
 
   match 'login' => 'sessions#new', :as => :login
 
-  resources :sessions
+  resources :sessions, only: [:new, :create, :destroy]
+  #for security no need to show or edit sessions. 11/7 kg
 
   resources :users
 
