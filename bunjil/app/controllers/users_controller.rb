@@ -14,7 +14,6 @@ class UsersController < ApplicationController
     else
       @user.errors.full_messages.each do |msg|
         if flash[:alert].nil?
-          @messageTitle = "Invalid fields"
           flash[:alert] = msg+"|"
         else
            flash[:alert] << msg+"|"
