@@ -1,3 +1,5 @@
-class Volunteer < User
-	set_table_name "volunteers"
+class Volunteer < ActiveRecord::Base
+
+	belongs_to :user
+
 end
