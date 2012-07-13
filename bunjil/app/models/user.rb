@@ -23,6 +23,10 @@ class User < ActiveRecord::Base
     BCrypt::Engine.hash_secret(pass, password_salt)
   end
 
+  def is_volunteer?
+    Volunteer.find_by_user_id(id).nil?
+  end
+
   private
 
   def prepare_password
