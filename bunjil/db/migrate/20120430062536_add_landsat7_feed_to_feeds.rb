@@ -1,7 +1,8 @@
 class AddLandsat7FeedToFeeds < ActiveRecord::Migration
-  def change
+  def up
   	f = Feed.new
   	f.name = "LandSat7"
   	f.url  = "http://landsat.usgs.gov/Landsat7.rss"
+  	f.save!
   end
 end

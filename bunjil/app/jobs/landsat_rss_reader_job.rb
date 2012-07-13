@@ -11,7 +11,7 @@ class LandsatRssReaderJob
         feed_item         = FeedItem.new
         feed_item.title   = item.title
         feed_item.feed_id = feed.id
-        
+
         feed_item.save
       end
     end

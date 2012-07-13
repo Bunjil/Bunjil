@@ -29,8 +29,6 @@ gem 'feedzirra', '~> 0.0.31' 		# RSS feed parsing
 gem 'delayed_job_active_record'		# Used for background work. Very simple concurrency.
 
 gem "twitter-bootstrap-rails"
-gem 'bootstrap-sass'
-
 
 # DEVELOPMENT ONLY GEMS.
 # Will shift SQLite3 here once we're going production.
