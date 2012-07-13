@@ -9,7 +9,7 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
     if @user.save
       session[:user_id] = @user.id
-      sign_in(@user)
+      current_user = @user
       redirect_to root_url, :success => "Thank you for signing up! You are now logged in."
     else
       @user.errors.full_messages.each do |msg|

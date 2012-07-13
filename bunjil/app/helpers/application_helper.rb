@@ -8,14 +8,10 @@ module ApplicationHelper
     end
   end
 
-# This method is used by the navbar to test if the menu item should be
+  # This method is used by the navbar to test if the menu item should be
 	# selected. If it should it returns "active".
-def is_current_uri?(string)
-	if string == request.env['PATH_INFO']
-		"active"
-	else
-		""
-	end
-end
+  def is_current_uri?(string)
+	  string == request.env['PATH_INFO'] ? "'active'" : "'inactive'"
+  end
 
 end

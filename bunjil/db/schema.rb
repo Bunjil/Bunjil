@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120629020042) do
+ActiveRecord::Schema.define(:version => 20120713014341) do
 
   create_table "area_updates", :force => true do |t|
     t.integer  "tl_lat"
@@ -57,7 +57,6 @@ ActiveRecord::Schema.define(:version => 20120629020042) do
   create_table "volunteers", :force => true do |t|
     t.integer "user_id"
     t.integer "area_id"
-    t.string  "email_address"
   end
 
 end

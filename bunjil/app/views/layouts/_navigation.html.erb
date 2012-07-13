@@ -9,9 +9,9 @@
       <li class=<%=is_current_uri?("/")%>>
         <%= link_to "Home", "/"  %></li>
       <li class=<%=is_current_uri?("/about")%>>
-      <%= link_to "About", %></li>
+        <%= link_to "About", %></li>
       <!-- Show when signed in. -->
-      <% if signed_in? %>
+      <% if logged_in? %>
         <li class=<%=is_current_uri?("/user/edit")%>>
           <%= link_to "Profile", "/user/edit" %></li>
         <li class=<%=is_current_uri?("/area")%>>

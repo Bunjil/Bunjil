@@ -7,7 +7,7 @@ before_filter :logout_required, :except => [:destroy]
   def create
     user = User.authenticate(params[:login], params[:password])
     if user
-      sign_in(user)
+      current_user = user
       session[:user_id] = user.id
 
       redirect_to root_url, :flash => { :success => "Logged in successfully." }
