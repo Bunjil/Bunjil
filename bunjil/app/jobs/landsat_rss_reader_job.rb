@@ -31,7 +31,7 @@ class LandsatRssReaderJob
     au=AreaUpdate.new
     au.init feed_item
     au.image_url=format_image_url item.description
-    puts au.image_url
+    #puts au.image_url
     if au.should_update?
       au.save
       au.create_download_job # uses the image downloader
