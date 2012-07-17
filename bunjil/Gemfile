@@ -7,6 +7,10 @@ gem 'rails', '3.2.2'
 
 gem 'sqlite3'
 
+# KG 17/7 for testing
+group :test do
+	gem 'turn', '< 0.8.3'
+end 
 gem "bcrypt-ruby", :require => "bcrypt"
 
 # Gems used only for assets and not required

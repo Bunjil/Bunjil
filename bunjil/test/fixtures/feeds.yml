@@ -1,9 +1,5 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  url: MyString
-  name: MyString
-
-two:
-  url: MyString
-  name: MyString
+  name: "LandSat7"
+  url: "http://landsat.usgs.gov/Landsat7.rss"

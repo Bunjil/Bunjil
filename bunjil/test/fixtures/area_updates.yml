@@ -6,10 +6,3 @@ one:
   cloud_cover: 1
   feed_item_id: 1
   image_url: MyString
-
-two:
-  tl_lat: 1
-  tl_long: 1
-  cloud_cover: 1
-  feed_item_id: 1
-  image_url: MyString

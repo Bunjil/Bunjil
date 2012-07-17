@@ -1,7 +1,8 @@
 require 'test_helper'
 
 class FeedItemTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  test "can get url" do
+  	a = feed_items(:one)
+  	assert a.get_formatted_url
+  end
 end

@@ -1,9 +1,6 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  title: MyString
-  feed_id: 1
-
-two:
-  title: MyString
+  title: "Path 138, Row 207 2012-07-13 at 05:30:35 GMT"
+  link: "http://earthexplorer.usgs.gov/form/metadatalookup/?collection_id=3373&#x26;entity_id=LE71382072012195EDC00&#x26;pageView=1"
   feed_id: 1

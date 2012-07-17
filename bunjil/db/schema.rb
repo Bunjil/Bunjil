@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120716052707) do
+ActiveRecord::Schema.define(:version => 20120717123931) do
 
   create_table "area_update_download_tasks", :force => true do |t|
     t.string   "image_url"
@@ -23,13 +23,19 @@ ActiveRecord::Schema.define(:version => 20120716052707) do
   add_index "area_update_download_tasks", ["area_update_id"], :name => "index_area_update_download_tasks_on_area_update_id"
 
   create_table "area_updates", :force => true do |t|
-    t.integer  "tl_lat"
-    t.integer  "tl_long"
     t.integer  "cloud_cover"
     t.integer  "feed_item_id"
     t.string   "image_url"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
+    t.string   "tr_lat"
+    t.string   "tr_lon"
+    t.string   "tl_lon"
+    t.string   "tl_lat"
+    t.string   "br_lat"
+    t.string   "br_lon"
+    t.string   "bl_lat"
+    t.string   "bl_lon"
   end
 
   create_table "delayed_jobs", :force => true do |t|
@@ -50,6 +56,7 @@ ActiveRecord::Schema.define(:version => 20120716052707) do
 
   create_table "feed_items", :force => true do |t|
     t.string   "title"
+    t.string   "link"
     t.integer  "feed_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
