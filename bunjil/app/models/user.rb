@@ -12,8 +12,10 @@ class User < ActiveRecord::Base
   validates_presence_of :password, :on => :create
   validates_confirmation_of :password
   validates_length_of :password, :minimum => 4, :allow_blank => true
+  validates_presence_of :role_id
 
-  has_one :volunteer
+  belongs_to :role
+  belongs_to :area
 
   # login can be either username or email address
   def self.authenticate(login, pass)
@@ -26,7 +28,11 @@ class User < ActiveRecord::Base
   end
 
   def is_volunteer?
-    Volunteer.find_by_user_id(id).nil?
+    @is_volunteer ||= self.role.name == "volunteer"
+  end
+
+  def is_subscriber?
+    @is_subscriber ||= self.role.name == "subscriber"
   end
 
   private

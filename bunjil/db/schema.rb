@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120717212325) do
+ActiveRecord::Schema.define(:version => 20120718115834) do
 
   create_table "area_update_download_tasks", :force => true do |t|
     t.string   "image_url"
@@ -86,6 +86,10 @@ ActiveRecord::Schema.define(:version => 20120717212325) do
     t.datetime "updated_at",      :null => false
   end
 
+  create_table "roles", :force => true do |t|
+    t.string "name"
+  end
+
   create_table "users", :force => true do |t|
     t.string   "username"
     t.string   "email"
@@ -93,11 +97,9 @@ ActiveRecord::Schema.define(:version => 20120717212325) do
     t.string   "password_salt"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
-  end
-
-  create_table "volunteers", :force => true do |t|
-    t.integer "user_id"
-    t.integer "area_id"
+    t.integer  "area_id"
+    t.integer  "role_id"
+    t.string   "description"
   end
 
 end
