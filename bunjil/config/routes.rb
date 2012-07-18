@@ -13,8 +13,6 @@ Bunjil::Application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
   #for security no need to show or edit sessions. 11/7 kg
 
-  resources :volunteers
-
   resources :users
 
   # The priority is based upon order of creation:
