@@ -1,0 +1,31 @@
+<% if @user.is_volunteer? %>
+  <% title "Select a Protected Area" %>\
+  <p>
+    <span style="color:red">Not yet implemented, just navigate away and forget what you saw.</span>
+    Choose a protected area to observe and report on, and help its local group to protect it
+  </p>
+  <div>
+    <table class="table table-striped">
+      <caption>Select an area</caption>
+      <thead>
+        <tr>
+          <th>Photo</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>data</td>
+          <td>data</td>
+        </tr>
+        <tr>
+          <td>data</td>
+          <td>data</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+<% else %>
+  <% title "Add your Area" %>
+
+<% end %>

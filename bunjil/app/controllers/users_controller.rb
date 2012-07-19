@@ -38,4 +38,12 @@ class UsersController < ApplicationController
       render :action => 'edit'
     end
   end
+
+  def area_select
+    @user = current_user
+    
+    render :area_select_form
+  end
+
+
 end

@@ -10,6 +10,11 @@ before_filter :logout_required, :except => [:destroy]
       current_user = user
       session[:user_id] = user.id
 
+      if current_user.area_id.nil?
+        redirect_to '/user/area_select' if current_user && current_user.area_id.nil?
+        return
+      end
+
       redirect_to root_url, :flash => { :success => "Logged in successfully." }
     else
       flash[:alert] = "Invalid login or password."
@@ -22,4 +27,5 @@ before_filter :logout_required, :except => [:destroy]
     current_user=nil
     redirect_to root_url, :flash => { :success =>"You have been logged out."}
   end
+
 end

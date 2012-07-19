@@ -14,6 +14,7 @@ Bunjil::Application.routes.draw do
   #for security no need to show or edit sessions. 11/7 kg
 
   resources :users
+  match 'user/area_select' => 'users#area_select'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
