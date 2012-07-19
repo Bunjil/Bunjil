@@ -11,13 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120718115834) do
+ActiveRecord::Schema.define(:version => 20120719075622) do
 
   create_table "area_update_download_tasks", :force => true do |t|
     t.string   "image_url"
     t.integer  "area_update_id"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+    t.integer  "retries",        :default => 0
   end
 
   add_index "area_update_download_tasks", ["area_update_id"], :name => "index_area_update_download_tasks_on_area_update_id"
