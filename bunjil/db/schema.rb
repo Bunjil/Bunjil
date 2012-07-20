@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120719075622) do
+ActiveRecord::Schema.define(:version => 20120720023210) do
 
   create_table "area_update_download_tasks", :force => true do |t|
     t.string   "image_url"
@@ -44,8 +44,10 @@ ActiveRecord::Schema.define(:version => 20120719075622) do
     t.integer  "left_lon"
     t.integer  "width"
     t.integer  "height"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.text     "description"
+    t.string   "name"
   end
 
   create_table "delayed_jobs", :force => true do |t|
@@ -96,11 +98,11 @@ ActiveRecord::Schema.define(:version => 20120719075622) do
     t.string   "email"
     t.string   "password_hash"
     t.string   "password_salt"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
     t.integer  "area_id"
     t.integer  "role_id"
-    t.string   "description"
+    t.text     "description",   :limit => 255
   end
 
 end

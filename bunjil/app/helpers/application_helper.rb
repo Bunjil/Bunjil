@@ -14,4 +14,12 @@ module ApplicationHelper
 	  string == request.env['PATH_INFO'] ? "'active'" : "'inactive'"
   end
 
+  def tick_button params
+    raw("<a class='btn btn-success #{params[:class]}' href='#{params[:url]}'>
+      #{params[:text]}
+      <i class='icon-ok icon-white'>
+      </i>
+    </a>")
+  end
+
 end

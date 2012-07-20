@@ -11,7 +11,7 @@ before_filter :logout_required, :except => [:destroy]
       session[:user_id] = user.id
 
       if current_user.area_id.nil?
-        redirect_to '/user/area_select' if current_user && current_user.area_id.nil?
+        redirect_to '/user/area_select'
         return
       end
 

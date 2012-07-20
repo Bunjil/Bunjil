@@ -1,5 +1,5 @@
 <% if @user.is_volunteer? %>
-  <% title "Select a Protected Area" %>\
+  <% title "Select a Protected Area" %>
   <p>
     <span style="color:red">Not yet implemented, just navigate away and forget what you saw.</span>
     Choose a protected area to observe and report on, and help its local group to protect it
@@ -9,19 +9,27 @@
       <caption>Select an area</caption>
       <thead>
         <tr>
-          <th>Photo</th>
+          <th class="column-small">Photo</th>
           <th>Description</th>
+          <th>Observing Group Description</th>
+          <th class="column-small"></th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>data</td>
-          <td>data</td>
+        <tr class="tall-row">
+          <td>Derp</td>
+          <td>Testing the body for this paragraph should be cool.</td>
+          <td>But it isn't because it's gay instead.</td>
+          <td><%= tick_button :url => '/' %></td>
         </tr>
-        <tr>
-          <td>data</td>
-          <td>data</td>
-        </tr>
+        <% @areas.each do |area| %>
+          <tr class="tall-row">
+            <td><%= image_tag area.latest_image.url %></td>
+            <td><%= area.description %></td>
+            <td><%= area.subscriber.description %></td>
+            <td><%= tick_button :url => '/' %></td>
+          </tr>
+        <% end %>
       </tbody>
     </table>
   </div>

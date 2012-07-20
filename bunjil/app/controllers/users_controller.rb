@@ -41,6 +41,8 @@ class UsersController < ApplicationController
 
   def area_select
     @user = current_user
+
+    @areas = Area.find :all if @user.is_volunteer?
     
     render :area_select_form
   end

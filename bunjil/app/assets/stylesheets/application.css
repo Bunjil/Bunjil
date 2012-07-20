@@ -11,3 +11,11 @@
  *= require_self
  *= require_tree .
 */
+
+.column-small {
+	max-width:20%;
+}
+
+.tall-row {
+	height:6em;
+}

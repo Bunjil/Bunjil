@@ -5,6 +5,8 @@ class AreaUpdate < ActiveRecord::Base
 # attr_accessor :tl_lat, :br_lat, :tr_lat, :bl_lat, 
 	# :tl_lon, :br_lon, :tr_lon, :bl_lon, :cloud_cover, :feed_item_id
 
+  has_one :area_update_download_task
+
   @@min_cloud_cover = 40	# must be below this
   def min_cloud_cover
   	@@min_cloud_cover
@@ -62,5 +64,4 @@ class AreaUpdate < ActiveRecord::Base
   	# TODO Aaron 
   end
 
-	has_one :area_update_download_task
 end
