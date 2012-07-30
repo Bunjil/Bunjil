@@ -31,7 +31,7 @@ gem 'jquery-rails'
 gem 'nokogiri', '~> 1.4.7'			# Used to parse HTML/XML using native execution. AKA quickly.
 gem 'feedzirra', '~> 0.0.31' 		# RSS feed parsing
 gem 'delayed_job_active_record'		# Used for background work. Very simple concurrency.
-
+gem 'gmaps4rails'
 gem "twitter-bootstrap-rails"
 gem 'bootstrap-sass'
 # DEVELOPMENT ONLY GEMS.
