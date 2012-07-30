@@ -7,7 +7,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(params[:user])
-    @user.role_id = Role.find_by_name(params[:role])
+    @user.role_id = Role.find_by_name(params[:role]).id
 
     if @user.save
       session[:user_id] = @user.id

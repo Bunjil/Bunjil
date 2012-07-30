@@ -16,12 +16,6 @@
         </tr>
       </thead>
       <tbody>
-        <tr class="tall-row">
-          <td>Derp</td>
-          <td>Testing the body for this paragraph should be cool.</td>
-          <td>But it isn't because it's gay instead.</td>
-          <td><%= tick_button :url => '/' %></td>
-        </tr>
         <% @areas.each do |area| %>
           <tr class="tall-row">
             <td><%= image_tag area.latest_image.url %></td>

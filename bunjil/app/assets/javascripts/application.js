@@ -20,3 +20,7 @@ $(document).ready(function () {
           $("div.alert.alert-success.fade.in").delay(2000).slideUp(500);
 });
 
+var signUpSelect = function(role) {
+	$('#' + role + '-form-view').show();
+	$('#role-select-view').hide();
+}
