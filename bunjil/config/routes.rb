@@ -13,6 +13,7 @@ Bunjil::Application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
   #for security no need to show or edit sessions. 11/7 kg
 
+  resources :areas
   resources :users
   match 'user/area_select' => 'users#area_select'
 

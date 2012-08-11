@@ -1,33 +1,13 @@
 <% if @user.is_volunteer? %>
-  <% title "Select a Protected Area" %>
+  <% title "Select an Area" %>
   <p>
     <span style="color:red">Not yet implemented, just navigate away and forget what you saw.</span>
-    Choose a protected area to observe and report on, and help its local group to protect it
+    Choose a protected area to observe and report on, and help its local group to protect it.
   </p>
-  <div>
-    <table class="table table-striped">
-      <caption>Select an area</caption>
-      <thead>
-        <tr>
-          <th class="column-small">Photo</th>
-          <th>Description</th>
-          <th>Observing Group Description</th>
-          <th class="column-small"></th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @areas.each do |area| %>
-          <tr class="tall-row">
-            <td><%= image_tag area.latest_image.url %></td>
-            <td><%= area.description %></td>
-            <td><%= area.subscriber.description %></td>
-            <td><%= tick_button :url => '/' %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-  </div>
+  <%= render 'area_select_list_view' %>
 <% else %>
-  <% title "Add your Area" %>
+  As a subscriber/local group, you must add the area you protect so other people can volunteer to monitor it for you.
 
+  <% title "Add your Area" %>
+  <%= render 'new_area_form' %>
 <% end %>

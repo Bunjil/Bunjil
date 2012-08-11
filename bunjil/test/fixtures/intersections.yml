@@ -3,9 +3,9 @@
 one:
   reported: 
   area_id: 1
-  area_updated_id: 1
+  area_update_id: 1
 
 two:
   reported: 
   area_id: 1
-  area_updated_id: 1
+  area_update_id: 1

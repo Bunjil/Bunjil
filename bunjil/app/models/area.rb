@@ -6,7 +6,7 @@ class Area < ActiveRecord::Base
   has_one :subscriber, :class_name => "User"
 
   def latest_image_url
-  	area_updates.first.image_url
+  	area_updates.first.try(:image_url)
   end
 
   # Return a rectangle with no rotation that encapsulates all corners.

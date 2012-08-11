@@ -1,0 +1,23 @@
+<div>
+  <table class="table table-striped">
+    <caption>Select an area</caption>
+    <thead>
+      <tr>
+        <th class="column-small">Photo</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th class="column-small"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @areas.each do |area| %>
+        <tr class="tall-row">
+          <td><%= image_tag area.latest_image_url %></td>
+          <td><%= area.name %></td>
+          <td><%= area.description %></td>
+          <td><%= tick_button :url => '/' %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

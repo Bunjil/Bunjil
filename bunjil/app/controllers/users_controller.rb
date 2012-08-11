@@ -43,6 +43,7 @@ class UsersController < ApplicationController
     @user = current_user
 
     @areas = Area.find :all if @user.is_volunteer?
+    @area  = Area.new if @user.is_subscriber?
     
     render :area_select_form
   end

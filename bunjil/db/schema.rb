@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120720023210) do
+ActiveRecord::Schema.define(:version => 20120811082000) do
 
   create_table "area_update_download_tasks", :force => true do |t|
     t.string   "image_url"
@@ -84,9 +84,9 @@ ActiveRecord::Schema.define(:version => 20120720023210) do
   create_table "intersections", :force => true do |t|
     t.boolean  "reported"
     t.integer  "area_id"
-    t.integer  "area_updated_id"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.integer  "area_update_id"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
   end
 
   create_table "roles", :force => true do |t|

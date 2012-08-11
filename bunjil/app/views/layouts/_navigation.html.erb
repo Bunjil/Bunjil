@@ -15,7 +15,7 @@
         <li class=<%=is_current_uri?("/user/edit")%>>
           <%= link_to "Profile", "/user/edit" %></li>
         <li class=<%=is_current_uri?("/area")%>>
-        <%= link_to "Area", %></li>
+        <%= link_to "Area", '/user/area_select' %></li>
         <li><%= link_to "Sign Out", "/logout", method: "delete" %></li>
       <% else %>
         <li class=<%=is_current_uri?("/login")%>>
