@@ -1,3 +1,18 @@
+# == Schema Information
+#
+# Table name: areas
+#
+#  id          :integer          not null, primary key
+#  top_lat     :integer
+#  left_lon    :integer
+#  width       :integer
+#  height      :integer
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  description :text
+#  name        :string(255)
+#
+
 class Area < ActiveRecord::Base
 
   has_many :intersections

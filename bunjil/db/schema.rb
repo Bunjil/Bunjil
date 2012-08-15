@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120811082000) do
+ActiveRecord::Schema.define(:version => 20120815074830) do
 
   create_table "area_update_download_tasks", :force => true do |t|
     t.string   "image_url"
@@ -37,6 +37,8 @@ ActiveRecord::Schema.define(:version => 20120811082000) do
     t.string   "br_lon"
     t.string   "bl_lat"
     t.string   "bl_lon"
+    t.string   "band3_url"
+    t.string   "band4_url"
   end
 
   create_table "areas", :force => true do |t|

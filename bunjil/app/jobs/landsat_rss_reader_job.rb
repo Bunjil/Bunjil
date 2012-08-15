@@ -29,18 +29,12 @@ class LandsatRssReaderJob
 
     # Create area update with url and feed lat/long points.
     au=AreaUpdate.new
-    au.init feed_item
-    au.image_url=format_image_url item.description
+    au.init feed_item, item.description
     #puts au.image_url
     if au.should_update?
       au.save
       au.create_download_job # uses the image downloader
     end
-  end
-
-  def format_image_url raw
-    doc=Nokogiri::HTML(raw)
-    doc.xpath('//a[1]/@href').text
   end
 
 end

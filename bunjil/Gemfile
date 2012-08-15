@@ -37,7 +37,8 @@ gem 'bootstrap-sass'
 # DEVELOPMENT ONLY GEMS.
 # Will shift SQLite3 here once we're going production.
 gem "nifty-generators", :group => :development
-
+# just a handy thing to comment the db columns into the model files.
+gem "annotate", :group => :development
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
