@@ -13,7 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require twitter/bootstrap
-//= require_tree .
+//= require bootstrap
 //= require bootstrap-alert
 $(document).ready(function () {
           $("div.alert.alert-info.fade.in").delay(2000).slideUp(500);

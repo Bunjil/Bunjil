@@ -1,0 +1,21 @@
+<% content_for :head do %>
+    <%= javascript_include_tag "http://maps.googleapis.com/maps/api/js?v=3.9&sensor=false" %>
+    <%= javascript_include_tag "observation_maps.js" %>
+    <script type="text/javascript">
+      google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+<% end %>
+<% title "Area Observation" %>
+<p>
+Click on locations on the right map that show deforestation
+</p>
+<div class="row">
+  <div class="span6"><h2 style="text-align:center">Before</h2></div>
+  <div class="span6"><h2 style="text-align:center">After</h2></div>
+</div>
+<div class="row">
+  <div class="span6"><div id="left_map_canvas" class="obs_map"></div></div>
+  <div class="span6"><div id="right_map_canvas" class="obs_map"></div></div>
+</div>
+
+<a class="btn btn-primary btn-large">Submit</a>

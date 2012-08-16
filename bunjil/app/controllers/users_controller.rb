@@ -48,5 +48,7 @@ class UsersController < ApplicationController
     render :area_select_form
   end
 
-
+  def area_observation
+    @user = current_user
+  end
 end

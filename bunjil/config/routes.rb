@@ -16,6 +16,7 @@ Bunjil::Application.routes.draw do
   resources :areas
   resources :users
   match 'user/area_select' => 'users#area_select'
+  match 'user/area_observation' => 'users#area_observation'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
