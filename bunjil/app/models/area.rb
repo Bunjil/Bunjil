@@ -28,6 +28,6 @@ class Area < ActiveRecord::Base
   def get_points
     y = self[:top_lat]
     x = self[:left_lon]
-    Hash[:y, y, :h, self[:height], :x, x, :w, self[:width]]
+    Hash[:y, y, :height, self[:height], :x, x, :width, self[:width]]
   end
 end

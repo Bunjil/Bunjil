@@ -55,3 +55,7 @@ gem "annotate", :group => :development
 # gem 'ruby-debug19', :require => 'ruby-debug'
 
 gem "mocha", :group => :test
+#gem 'rspec-rails', :group => :test # tests
+#gem 'rmagick', :group => :test # tests
+# to install you need "imagemagick-devel", can install from
+

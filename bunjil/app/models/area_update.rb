@@ -65,6 +65,25 @@ class AreaUpdate < ActiveRecord::Base
   	end
   end
 
+  def find_intersection area
+    a = area.get_points
+    au = get_points
+    # My Lower right
+    au_lr = Hash[:x, au[:x] + au[:width], :y, au[:y] + au[:height]]
+    # Area lower right
+    a_lr = Hash[:x, a[:x] + a[:width], :y, a[:y] + a[:height]]
+    # true if collision
+    if ( ! (
+      (a[:x] > au_lr[:x]) ||
+      (au[:x] > a_lr[:x]) ||
+      (a[:y] > au_lr[:y]) ||
+      (au[:y] > a_lr[:y]) )
+        )
+      true
+    end
+
+  end
+
   # Return a rectangle with no rotation that encapsulates all corners.
   def get_points
   	allLat=Array.new 
@@ -79,7 +98,7 @@ class AreaUpdate < ActiveRecord::Base
   	allLon << self[:br_lon].to_f
   	y = allLat.min
   	x = allLon.min
-  	Hash[:y, y, :h, allLat.max - y, :x, x, :w, allLon.max - x]
+  	Hash[:y, y, :height, allLat.max - y, :x, x, :width, allLon.max - x]
   end
 
   # This method creeate image in the queue with image url that
