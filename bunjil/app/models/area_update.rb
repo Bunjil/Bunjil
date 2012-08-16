@@ -79,7 +79,16 @@ class AreaUpdate < ActiveRecord::Base
       (a[:y] > au_lr[:y]) ||
       (au[:y] > a_lr[:y]) )
         )
-      true
+      intersect = Hash[:x, 0, :y, 0, :w, 0, :h, 0]
+      intersect[:x] = [a[:x],au[:x]].max
+      intersect[:y] = [a[:y],au[:y]].max
+      intersect[:w] = [a_lr[:x],au_lr[:x]].min - intersect[:x]
+      intersect[:h] = [a_lr[:y],au_lr[:y]].min - intersect[:y]
+
+      i=Intersection.new intersect
+      i.area=area
+      i.area_update=self
+      i.save
     end
 
   end

@@ -54,8 +54,10 @@ class PopulateTestAreaUpdateData < ActiveRecord::Migration
   	Area.create name: "Test", description: "A Test Area",
   		left_lon: 10, top_lat: 6, width: 10, height: 12
 
+  		#i6
+  		#nil
   		#i5
-  		# none
+  		# {:x=>10, :y=>6, :w=>10, :h=>12}
   		#i4
   		# {:y=>7.0, :h=>9.0, :x=>11.0, :w=>7.0} 
   		#i3
