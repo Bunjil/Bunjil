@@ -57,6 +57,19 @@ class AreaUpdate < ActiveRecord::Base
     band4_url=image_url
   end
 
+  def handle
+    #puts au.image_url
+    if should_update?
+      save
+      create_download_job # uses the image downloader
+    end
+
+    Area.all.each do |a|
+      find_intersection a
+      # TODO: Now destroy yourself...
+    end
+  end
+
   # Creates an intersection and returns true if this area meets 
     # cloud cover requirements and intersects with an Area. 
   def should_update?
@@ -64,7 +77,8 @@ class AreaUpdate < ActiveRecord::Base
   		true
   	end
   end
-
+  
+  # This creates an intersection if needed.
   def find_intersection area
     a = area.get_points
     au = get_points
@@ -113,7 +127,10 @@ class AreaUpdate < ActiveRecord::Base
   # This method creeate image in the queue with image url that
   	# must be already set
   def create_download_job
-  	# TODO Aaron 
+  	dl_task = AreaUpdateDownloadTask.new
+    dl_task.image_url = image_url  # not really needed, must discuss
+    area_update = self
+    dl_task.save
   end
 
   private
