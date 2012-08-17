@@ -1,3 +1,25 @@
+# == Schema Information
+#
+# Table name: area_updates
+#
+#  id           :integer          not null, primary key
+#  cloud_cover  :integer
+#  feed_item_id :integer
+#  image_url    :string(255)
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#  tr_lat       :string(255)
+#  tr_lon       :string(255)
+#  tl_lon       :string(255)
+#  tl_lat       :string(255)
+#  br_lat       :string(255)
+#  br_lon       :string(255)
+#  bl_lat       :string(255)
+#  bl_lon       :string(255)
+#  band3_url    :string(255)
+#  band4_url    :string(255)
+#
+
 
 require 'test_helper'
 

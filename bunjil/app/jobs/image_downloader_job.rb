@@ -18,20 +18,21 @@ class ImageDownloaderJob
         threads << Thread.new(download_task){
           # to get the name of the image from the url.
           #image_name = download_task.area_update.area_update_id
-          image_name = download_task.image_url.split('/').last
+          image_url = download_task.image_url_band_3
+          image_name = download_task.image_url_band_3.split('/').last
           # log downloading image
-          log_downloading_image(image_name, download_task.image_url)
+          log_downloading_image(image_name, image_url)
 
           begin
             open("#{IMAGE_PATH}#{image_name}", 'wb') do |file|
-              file << open(download_task.image_url).read
+              file << open(image_url).read
             end
             #log download success
-            log_download_success(image_name, download_task.image_url)
+            log_download_success(image_name, image_url)
             # Delete task once image is downloaded
             AreaUpdateDownloadTask.destroy(download_task)
           rescue Exception => e
-            log_download_fail(image_name,  download_task.image_url, e.message)
+            log_download_fail(image_name, image_url, e.message)
 
             download_task.retries += 1
             download_task.save
