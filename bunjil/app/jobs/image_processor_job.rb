@@ -1,7 +1,7 @@
 require 'RMagick'
 include Magick
 
-class ImageProcessorJob
+class ImageProcessorJob 
 
   def perform
     lRedPath = "/home/megurineluka/BunjilForestWatch/Codebase/bunjil/app/jobs/brazil1-3.tif"
