@@ -6,31 +6,30 @@ class LandsatRssReaderJob
   def perform
     feed = Feed.find_by_name("LandSat7")
     rss_data = Feedzirra::Feed.fetch_and_parse(feed.url)
-    unless rss_data.is_a?(Fixnum)
-    # work with the feeds object
-      rss_data.entries.each do |item|
-        unless FeedItem.find_by_title item.title
-          # Only new entries: ignore entries with duplicate title.
-          handle_new_item item
-        end
-      end
+
+    # If the feed fails to be parses/fetched, just give up.
+    return if rss_data.is_a?(Fixnum) 
+
+    rss_data.entries.each do |item|
+      # Only new entries: ignore entries with duplicate title.
+      handle_new_item(item, feed.id) unless FeedItem.find_by_title item.title
     end
   end
 
   # This runs for each new feed.
-  def handle_new_item item
+  def handle_new_item(item, feed_id)
     feed_item         = FeedItem.new
     feed_item.title   = item.title
-    feed_item.feed_id = feed.id
-    feed_item.link   = item.link
+    feed_item.feed_id = feed_id
+    feed_item.link    = item.url
     
     feed_item.save
     # Parse for points and url.
 
     # Create area update with url and feed lat/long points.
-    au=AreaUpdate.new
-    au.init feed_item, item.description
-    au.handle
+    area_update = AreaUpdate.new
+    area_update.init(feed_item, item.description)
+    area_update.handle
   end
 
 end
