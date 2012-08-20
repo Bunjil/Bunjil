@@ -134,8 +134,6 @@ class AreaUpdate < ActiveRecord::Base
   end
 
   private
-  def init
-  end
   # uses item.description to get the image url
   def format_image_url raw
     doc=Nokogiri::HTML(raw)

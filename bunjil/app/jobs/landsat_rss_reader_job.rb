@@ -6,6 +6,7 @@ class LandsatRssReaderJob
   def perform
     feed = Feed.find_by_name("LandSat7")
     rss_data = Feedzirra::Feed.fetch_and_parse(feed.url)
+    # Note for some reason all tag names are different.
 
     # If the feed fails to be parses/fetched, just give up.
     return if rss_data.is_a?(Fixnum) 
@@ -28,7 +29,7 @@ class LandsatRssReaderJob
 
     # Create area update with url and feed lat/long points.
     area_update = AreaUpdate.new
-    area_update.init(feed_item, item.description)
+    area_update.init(feed_item, item.summary)
     area_update.handle
   end
 
