@@ -1,0 +1,9 @@
+<% title "Preview" %>
+<h1>Report Preview</h1>
+<p>
+	Name: <%=@report.name%></br>
+	Long: <%=@report.longitude%></br>
+	Lat: <%=@report.latitude%></br>
+	Desc: <%=@report.description%></br>
+</p>
+<%=link_to "Send" ,root_path, class: 'btn btn-primary' %>
