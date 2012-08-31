@@ -18,4 +18,23 @@ Click on locations on the right map that show deforestation
   <div class="span6"><div id="right_map_canvas" class="obs_map"></div></div>
 </div>
 
-<a class="btn btn-primary btn-large">Submit</a>
+<%= form_for @report do |f| %>
+  <p>
+    <%= f.label:name %>
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :longitude, "Longitude" %>
+    <%= f.text_field :longitude %>
+  </p>
+  <p>
+    <%= f.label :latitude, "Latitude" %>
+    <%= f.text_field :latitude %>
+  </p>
+  <p>
+    <%= f.label :description, "description" %>
+    <%= f.text_field :description %>
+  </p>
+  <p><%= f.submit ("Submit" ),  :class => 'btn btn-primary'%></p>
+<% end %>
+

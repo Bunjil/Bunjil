@@ -1,5 +1,7 @@
 Bunjil::Application.routes.draw do
 
+  get "reports/create"
+
   root :to => "static#index"
 
   match 'user/edit' => 'users#edit', :as => :edit_current_user
@@ -15,6 +17,7 @@ Bunjil::Application.routes.draw do
 
   resources :areas
   resources :users
+  resources :reports
   match 'user/area_select' => 'users#area_select'
   match 'user/area_observation' => 'users#area_observation'
 

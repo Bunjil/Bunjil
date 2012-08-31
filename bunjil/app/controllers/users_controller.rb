@@ -50,5 +50,6 @@ class UsersController < ApplicationController
 
   def area_observation
     @user = current_user
+    @report=Report.new
   end
 end
