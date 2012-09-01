@@ -1,7 +1,7 @@
 require 'RMagick'
 include Magick
 
-class ImageProcessorJob 
+class ImageProcessorJob
 
   def perform
     lRedPath = "/home/megurineluka/BunjilForestWatch/Codebase/bunjil/app/jobs/brazil1-3.tif"
@@ -22,7 +22,7 @@ class ImageProcessorJob
         lNDVIPixel = color_result(lNDVI)
         #puts lRedPixel
         #Remove this if ImageMagick configured to 8bit
-        lNDVIPixel = Pixel.new(lNDVIPixel.red * 257, lNDVIPixel.green * 257, lNDVIPixel.blue * 257)
+        lNDVIPixel = Pixel.new(lNDVIPixel.red * 256, lNDVIPixel.green * 256, lNDVIPixel.blue * 256)
         lNDVIImage.pixel_color(x, y, lNDVIPixel)
 
       end
@@ -33,34 +33,50 @@ class ImageProcessorJob
 
   #Returns the NDVI to Color map result for each pixel's NDVI
   def color_result(aValue)
-    if aValue <= -0.2 
-      return Pixel.new(0,0,0,255)
-    elsif aValue <= -0.1 
-      return Pixel.new(255, 0, 0, 255)
-    elsif aValue <= 0 
-      return Pixel.new(201, 0, 0, 255)
-    elsif aValue <= 0.1 
-      return Pixel.new(136, 0, 0, 255)
-    elsif aValue <= 0.2 
-      return Pixel.new(255, 255, 0, 255)
-    elsif aValue <= 0.3 
-      return Pixel.new(185, 185, 0, 255)
-    elsif aValue <= 0.4 
-      return Pixel.new(108, 108, 0, 255)
-    elsif aValue <= 0.5 
-      return Pixel.new(0, 255, 255, 255)
-    elsif aValue <= 0.6 
-      return Pixel.new(0, 128, 192, 255)
-    elsif aValue <= 0.7 
-      return Pixel.new(0, 0, 255, 255)
-    elsif aValue <= 0.8 
-      return Pixel.new(0, 255, 0, 255)
-    elsif aValue <= 0.9 
-      return Pixel.new(0, 255, 64, 255)
-    elsif aValue <= 1 
-      return Pixel.new(0, 128, 0, 255)
-    else 
+    if    aValue <=-1.000 
+      return Pixel.new(  5,  24,  82, 255)
+    elsif aValue <=-0.300 
+      return Pixel.new(  5,  24,  82, 255)
+    elsif aValue <=-0.180 
       return Pixel.new(255, 255, 255, 255)
+    elsif aValue <= 0.000 
+      return Pixel.new(255, 255, 255, 255)
+    elsif aValue <= 0.025 
+      return Pixel.new(206, 197, 180, 255)
+    elsif aValue <= 0.075 
+      return Pixel.new(191, 163, 124, 255)
+    elsif aValue <= 0.125 
+      return Pixel.new(179, 174,  96, 255)
+    elsif aValue <= 0.150 
+      return Pixel.new(163, 181,  80, 255)
+    elsif aValue <= 0.175 
+      return Pixel.new(144, 170,  60, 255)
+    elsif aValue <= 0.233 
+      return Pixel.new(166, 195,  29, 255)
+    elsif aValue <= 0.266 
+      return Pixel.new(135, 183,   3, 255)
+    elsif aValue <= 0.333 
+      return Pixel.new(121, 175,   1, 255)
+    elsif aValue <= 0.366 
+      return Pixel.new(101, 163,   0, 255)
+    elsif aValue <= 0.433 
+      return Pixel.new( 78, 151,   0, 255)
+    elsif aValue <= 0.466 
+      return Pixel.new( 43, 132,   4, 255)
+    elsif aValue <= 0.550 
+      return Pixel.new(  0, 114,   0, 255)
+    elsif aValue <= 0.650 
+      return Pixel.new(  0,  90,   1, 255)
+    elsif aValue <= 0.750 
+      return Pixel.new(  0,  73,   0, 255)
+    elsif aValue <= 0.850 
+      return Pixel.new(  0,  56,   0, 255)
+    elsif aValue <= 0.950 
+      return Pixel.new(  0,  31,   0, 255)
+    elsif aValue <= 1.000 
+      return Pixel.new(  0,   0,   0, 255)
+    else                  
+      return Pixel.new(255, 255, 255, 255) 
     end
   end
 
