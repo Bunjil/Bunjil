@@ -3,7 +3,7 @@
 # Table name: feed_items
 #
 #  id         :integer          not null, primary key
-#  title      :string(255)
+#  scene_id   :string(255)
 #  link       :string(255)
 #  feed_id    :integer
 #  created_at :datetime         not null
@@ -11,7 +11,7 @@
 #
 
 class FeedItem < ActiveRecord::Base
-	validates_uniqueness_of :title
+  validates_uniqueness_of :scene_id
 
   # Returns the working url
   def get_formatted_url

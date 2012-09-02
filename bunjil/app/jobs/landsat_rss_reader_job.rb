@@ -12,17 +12,17 @@ class LandsatRssReaderJob
     return if rss_data.is_a?(Fixnum) 
 
     rss_data.entries.each do |item|
-      # Only new entries: ignore entries with duplicate title.
-      handle_new_item(item, feed.id) unless FeedItem.find_by_title item.title
+      # Only new entries: ignore entries with duplicate scene id.
+      handle_new_item(item, feed.id) unless FeedItem.find_by_scene_id item.summary.scan(/Scene ID: (\w*)/).first
     end
   end
 
   # This runs for each new feed.
   def handle_new_item(item, feed_id)
-    feed_item         = FeedItem.new
-    feed_item.title   = item.title
-    feed_item.feed_id = feed_id
-    feed_item.link    = item.url
+    feed_item          = FeedItem.new
+    feed_item.scene_id = item.summary.scan(/Scene ID: (\w*)/).first
+    feed_item.feed_id  = feed_id
+    feed_item.link     = item.url
     
     feed_item.save
     # Parse for points and url.
