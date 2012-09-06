@@ -1,6 +1,8 @@
 class ReportsController < ApplicationController
   def create
-  	@report=Report.create params[:report]
+  	@report=Report.new params[:report]
+    @report.user = current_user
+    @report.save
   	redirect_to report_path(id: @report.id)
   end 
   def show

@@ -9,10 +9,12 @@
       You have a report for your area. Please check. Details below:
       <br />
       <p>
-        Name: <%=@report.name%></br>
-        Long: <%=@report.longitude%></br>
-        Lat: <%=@report.latitude%></br>
+        User Reporting: <%= @report.user.username %></br>
+        Area: <%= @report.intersection.area.name %></br>
         Desc: <%=@report.description%></br>
+        <% @report.location.each do |loc| -%>
+          Long Lat: <%=loc%></br>
+        <% end -%>
       </p>
     </p>
     <p>

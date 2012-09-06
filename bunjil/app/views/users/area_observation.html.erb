@@ -2,7 +2,9 @@
     <%= javascript_include_tag "http://maps.googleapis.com/maps/api/js?v=3.9&sensor=false" %>
     <%= javascript_include_tag "observation_maps.js" %>
     <script type="text/javascript">
-      google.maps.event.addDomListener(window, 'load', initialize);
+      google.maps.event.addDomListener(window, 'load', function() {
+        initialize(<%= @area_update.tl_lat %>, <%= @area_update.tl_lon %>, <%= @area_update.br_lat %>, <%= @area_update.br_lon %>, <%= @area_update_old.tl_lat %>, <%= @area_update_old.tl_lon %>, <%= @area_update_old.br_lat %>, <%= @area_update_old.br_lon %>, "<%= @area_update.image_url %>", "<%= @area_update_old.image_url %>");
+      });
     </script>
 <% end %>
 <% title "Area Observation" %>
@@ -19,22 +21,11 @@ Click on locations on the right map that show deforestation
 </div>
 
 <%= form_for @report do |f| %>
+  <%= f.hidden_field :intersection_id %>
   <p>
-    <%= f.label:name %>
-    <%= f.text_field :name %>
-  </p>
-  <p>
-    <%= f.label :longitude, "Longitude" %>
-    <%= f.text_field :longitude %>
-  </p>
-  <p>
-    <%= f.label :latitude, "Latitude" %>
-    <%= f.text_field :latitude %>
-  </p>
-  <p>
-    <%= f.label :description, "description" %>
+    <%= f.label :description, "Comment" %>
     <%= f.text_field :description %>
   </p>
-  <p><%= f.submit ("Submit" ),  :class => 'btn btn-primary'%></p>
+  <p><%= f.submit ("Submit"),  :class => 'btn btn-primary'%></p>
 <% end %>
 

@@ -50,6 +50,20 @@ class UsersController < ApplicationController
 
   def area_observation
     @user = current_user
-    @report=Report.new
+    if !params[:intersection]
+      redirect_to root_url, :flash => { :alert => "Not a valid Intersection" }
+    else
+      intersection = Intersection.find(params[:intersection])
+      last_intersection = Intersection.where(:area_id => intersection.area_id).where('id != ?', intersection.id).where('created_at < ?',intersection.created_at).order('created_at DESC').first
+      if !last_intersection
+        redirect_to root_url, :flash => { :alert => "Not a valid Intersection, no previous image" }
+      else
+        @area_update_old = last_intersection.area_update
+        @area_update = intersection.area_update
+        @report=Report.new
+        @report.intersection = intersection
+        @report.user = @user
+      end
+    end
   end
 end

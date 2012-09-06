@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120902123737) do
+ActiveRecord::Schema.define(:version => 20120902192635) do
 
   create_table "area_update_download_tasks", :force => true do |t|
     t.string   "image_url_band_3"
@@ -70,7 +70,7 @@ ActiveRecord::Schema.define(:version => 20120902123737) do
   add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
 
   create_table "feed_items", :force => true do |t|
-    t.string   "scene_id"
+    t.string   "title"
     t.string   "link"
     t.integer  "feed_id"
     t.datetime "created_at", :null => false
@@ -97,12 +97,12 @@ ActiveRecord::Schema.define(:version => 20120902123737) do
   end
 
   create_table "reports", :force => true do |t|
-    t.string   "name"
-    t.decimal  "longitude"
-    t.decimal  "latitude"
     t.text     "description"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+    t.text     "location"
+    t.integer  "intersection_id"
+    t.integer  "user_id"
   end
 
   create_table "roles", :force => true do |t|

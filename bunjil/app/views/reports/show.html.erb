@@ -1,9 +1,12 @@
 <% title "Preview" %>
 <h1>Report Preview</h1>
 <p>
-	Name: <%=@report.name%></br>
-	Long: <%=@report.longitude%></br>
-	Lat: <%=@report.latitude%></br>
-	Desc: <%=@report.description%></br>
+	User Reporting: <%= @report.user.username %></br>
+	Area: <%= @report.intersection.area.name %></br>
+	Description: <%= @report.description %></br>
+	<% @report.location.each do |loc| -%>
+		Long Lat: <%=loc%></br>
+	<% end -%>
+	
 </p>
 <%=link_to "Send" ,email_report_path(id: @report.id), class: 'btn btn-primary' %>
