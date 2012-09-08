@@ -70,7 +70,7 @@ ActiveRecord::Schema.define(:version => 20120902192635) do
   add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
 
   create_table "feed_items", :force => true do |t|
-    t.string   "title"
+    t.string   "scene_id"
     t.string   "link"
     t.integer  "feed_id"
     t.datetime "created_at", :null => false
