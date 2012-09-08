@@ -1,5 +1,12 @@
 <% title "Update Profile" %>
 
-<%= render 'layouts/banner' %>
+<%#= render 'layouts/banner' %>
 
-<%= render 'form' %>
+<% if @user.is_volunteer? %>
+  <%= render 'form' %>
+<% else %>
+  <%= render 'form_subscriber' %>
+<% end %>
+
+<%= render :partial => 'area_select_form' %>
+

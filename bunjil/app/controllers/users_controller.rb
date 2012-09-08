@@ -28,24 +28,17 @@ class UsersController < ApplicationController
 
   def edit
     @user = current_user
+    @areas = Area.find :all if @user.is_volunteer?
   end
 
   def update
     @user = current_user
+
     if @user.update_attributes(params[:user])
       redirect_to root_url, :success => "Your profile has been updated."
     else
       render :action => 'edit'
     end
-  end
-
-  def area_select
-    @user = current_user
-
-    @areas = Area.find :all if @user.is_volunteer?
-    @area  = Area.new if @user.is_subscriber?
-    
-    render :area_select_form
   end
 
   def area_observation
