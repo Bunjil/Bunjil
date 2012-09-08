@@ -17,7 +17,12 @@
           <td><%= image_tag area.latest_image_url %></td>
           <td><%= area.name %></td>
           <td><%= area.description %></td>
-          <td><%= tick_button :url => '/' %></td>
+          <td>
+            <%= form_for @user do |f| %>
+              <%= hidden_field_tag "user[area_id]", area.id %>
+              <%= f.submit raw(tick_icon), :class => 'btn btn-primary' %>
+            <% end %>  
+          </td>
         </tr>
       <% end %>
     </tbody>

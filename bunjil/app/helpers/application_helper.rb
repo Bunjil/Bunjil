@@ -17,9 +17,12 @@ module ApplicationHelper
   def tick_button params
     raw("<a class='btn btn-success #{params[:class]}' href='#{params[:url]}'>
       #{params[:text]}
-      <i class='icon-ok icon-white'>
-      </i>
+      #{tick_icon}
     </a>")
+  end
+
+  def tick_icon
+    "<i class='icon-ok icon-white'></i>"
   end
 
 end
