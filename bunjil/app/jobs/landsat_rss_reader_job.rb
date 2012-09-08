@@ -20,7 +20,7 @@ class LandsatRssReaderJob
   # This runs for each new feed.
   def handle_new_item(item, feed_id)
     feed_item          = FeedItem.new
-    feed_item.scene_id = item.summary.scan(/Scene ID: (\w*)/).first
+    feed_item.scene_id = item.summary.scan(/Scene ID: (\w*)/)[0][0] # Matches go in a 2D array
     feed_item.feed_id  = feed_id
     feed_item.link     = item.url
     
