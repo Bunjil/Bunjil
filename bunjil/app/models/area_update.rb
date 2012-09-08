@@ -16,6 +16,8 @@
 #  br_lon       :string(255)
 #  bl_lat       :string(255)
 #  bl_lon       :string(255)
+#  band3_url    :string(255)
+#  band4_url    :string(255)
 #
 
 # long is x, lat is y.
