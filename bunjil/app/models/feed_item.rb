@@ -12,6 +12,8 @@
 
 class FeedItem < ActiveRecord::Base
   validates_uniqueness_of :scene_id
+  belongs_to :feed
+  has_many :area_updates
 
   # Returns the working url
   def get_formatted_url

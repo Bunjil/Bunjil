@@ -13,26 +13,14 @@
 #  name        :string(255)
 #
 
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+a1:
+  name: "Test"
+  description: "A Test Area"
+  left_lon: 10
+  top_lat: 6
+  width: 10
+  height: 12
 
-# This model initially had no columns defined.  If you add columns to the
-# model remove the '{}' from the fixture names and add the columns immediately
-# below each fixture, per the syntax in the comments below
+#   Area.create name: "Test", description: "A Test Area",
+#     left_lon: 10, top_lat: 6, width: 10, height: 12
 #
-one:
-  top_lat: 32.22544
-  h: 1.899
-  left_lon: -117.5592
-  width: 2.454
-
-two:
-  top_lat: 32.22544
-  h: 1.899
-  left_lon: -117.5592
-  width: 2.454
-
-three:
-  top_lat: 32.22544
-  h: 1.899
-  left_lon: -117.5592
-  width: 2.454

@@ -11,6 +11,6 @@
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-one:
+feed1:
   name: "LandSat7"
   url: "http://landsat.usgs.gov/Landsat7.rss"

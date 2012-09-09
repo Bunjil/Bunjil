@@ -31,6 +31,8 @@ class AreaUpdate < ActiveRecord::Base
 	# :tl_lon, :br_lon, :tr_lon, :bl_lon, :cloud_cover, :feed_item_id
 
   has_one :area_update_download_task
+  belongs_to :feed_item
+  has_many :intersections
 
   @@min_cloud_cover = 40	# must be below this
   # Getters
@@ -101,9 +103,8 @@ class AreaUpdate < ActiveRecord::Base
       intersect[:w] = [a_lr[:x],au_lr[:x]].min - intersect[:x]
       intersect[:h] = [a_lr[:y],au_lr[:y]].min - intersect[:y]
 
-      i=Intersection.new intersect
+      i=intersections.new intersect
       i.area=area
-      i.area_update=self
       i.save
     end
 

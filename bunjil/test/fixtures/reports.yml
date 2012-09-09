@@ -12,15 +12,6 @@
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
-
-one:
-  name: MyString
-  longitude: 9.99
-  latitude: 9.99
-  description: MyText
-
-two:
-  name: MyString
-  longitude: 9.99
-  latitude: 9.99
-  description: MyText
+r1:
+  user: :foo
+  intersection: :i1

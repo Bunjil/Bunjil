@@ -11,7 +11,7 @@
 # LandSat7 url: "http://landsat.usgs.gov/Landsat7.rss"
 
 class Feed < ActiveRecord::Base
-
+  has_many :feed_items
 	validates_uniqueness_of :name
 
 end
