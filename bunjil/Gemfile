@@ -34,6 +34,7 @@ gem 'delayed_job_active_record'		# Used for background work. Very simple concurr
 gem 'gmaps4rails'
 gem "twitter-bootstrap-rails"
 gem 'bootstrap-sass'
+gem 'rmagick'						#NDVI Processing
 # DEVELOPMENT ONLY GEMS.
 # Will shift SQLite3 here once we're going production.
 gem "nifty-generators", :group => :development
