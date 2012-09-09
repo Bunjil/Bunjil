@@ -4,7 +4,7 @@ include Magick
 class ImageProcessorJob
 
   def perform(aAreaUpdate, aRedPath, aNIRPath)
-    lDestination = "/home/megurineluka/BunjilForestWatch/Codebase/bunjil/app/jobs/ndvi.jpg"
+    lDestination = "ndvi.jpg"
 
     puts "Loading Red Image"
     lRedImage = ImageList.new(aRedPath)
