@@ -45,14 +45,14 @@ class AreaUpdate < ActiveRecord::Base
     # must call save after. Must pass in the feed item creating it.
   def init(item, desc)
   	doc=Nokogiri::HTML(open(item.get_formatted_url))
-  	self[:tl_lat]=search(doc, 'Corner UL Latitude')
-  	self[:tr_lat]=search(doc, 'Corner UR Latitude')
-  	self[:br_lat]=search doc, 'Corner LR Latitude'
-  	self[:bl_lat]=search doc, 'Corner LL Latitude'
-  	self[:tl_lon]=search doc, 'Corner UL Longitude'
-  	self[:tr_lon]=search doc, 'Corner UR Longitude'
-  	self[:br_lon]=search doc, 'Corner LR Longitude'
-  	self[:bl_lon]=search doc, 'Corner LL Longitude'
+  	self[:tl_lat]=search(doc, 'Corner UL Latitude Product')
+  	self[:tr_lat]=search(doc, 'Corner UR Latitude Product')
+  	self[:br_lat]=search doc, 'Corner LR Latitude Product'
+  	self[:bl_lat]=search doc, 'Corner LL Latitude Product'
+  	self[:tl_lon]=search doc, 'Corner UL Longitude Product'
+  	self[:tr_lon]=search doc, 'Corner UR Longitude Product'
+  	self[:br_lon]=search doc, 'Corner LR Longitude Product'
+  	self[:bl_lon]=search doc, 'Corner LL Longitude Product'
   	self[:cloud_cover]=search doc, 'Cloud Cover'
   	self[:feed_item_id]=item.id
     image_url=format_image_url desc
