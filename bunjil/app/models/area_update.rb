@@ -131,8 +131,8 @@ class AreaUpdate < ActiveRecord::Base
   	# must be already set
   def create_download_job
   	dl_task = AreaUpdateDownloadTask.new
-    dl_task.image_url = image_url  # not really needed, must discuss
-    area_update = self
+    # dl_task.image_url = image_url  # not really needed, must discuss
+    dl_task.area_update = self
     dl_task.save
   end
 
