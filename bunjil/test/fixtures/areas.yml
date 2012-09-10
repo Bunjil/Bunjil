@@ -20,7 +20,7 @@ a1:
   top_lat: 6
   width: 10
   height: 12
-a1:
+a2:
   name: "Test2"
   description: "A Test Area 2"
   left_lon: 53
