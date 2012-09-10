@@ -20,6 +20,13 @@ a1:
   top_lat: 6
   width: 10
   height: 12
+a1:
+  name: "Test2"
+  description: "A Test Area 2"
+  left_lon: 53
+  top_lat: -5
+  width: 100
+  height: 100
 
 #   Area.create name: "Test", description: "A Test Area",
 #     left_lon: 10, top_lat: 6, width: 10, height: 12

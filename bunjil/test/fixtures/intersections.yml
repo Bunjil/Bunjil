@@ -16,11 +16,6 @@
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-i1:
-  reported: false
-  area: :a1
-  area_update: au1
-
     #i6
     #nil
     #i5
