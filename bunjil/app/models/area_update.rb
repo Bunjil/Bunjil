@@ -84,8 +84,11 @@ class AreaUpdate < ActiveRecord::Base
   
   # This creates an intersection if needed.
   def find_intersection area
+    logger.debug "Checking for Intersection:"
     a = area.get_points
     au = get_points
+    logger.debug "Area: #{a}"
+    logger.debug "Area Update: #{au}"
     # My Lower right
     au_lr = Hash[:x, au[:x] + au[:width], :y, au[:y] + au[:height]]
     # Area lower right
@@ -106,8 +109,10 @@ class AreaUpdate < ActiveRecord::Base
       i=intersections.new intersect
       i.area=area
       i.save
+      logger.debug " New with: #{intersect}."
       true
     else
+      logger.debug " None."
       false
     end
 

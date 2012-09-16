@@ -49,6 +49,80 @@ describe AreaUpdate, "area_update" do
     i.w.should eq(7)
     i.h.should eq(9)
   end
+  it "intersection with same." do
+    a1 = areas(:a1)
+    au=area_updates(:au5)
+    au.find_intersection a1
+    i=au.intersections.last
+    i.x.should eq(10)
+    i.y.should eq(6)
+    i.w.should eq(10)
+    i.h.should eq(12)
+  end
+  it "no intersections. positive long range" do
+    a1 = areas(:a1)
+    au=area_updates(:au6)
+    n=au.intersections.count
+    au.find_intersection a1
+    # none are added.
+    au.intersections.count.should eq(n)
+  end
+  it "intersection gets added." do
+    n=Intersection.count
+    a1 = areas(:a1)
+    au=area_updates(:au1)
+    au.find_intersection a1
+    # none are added.
+    Intersection.count.should eq(n+1)
+  end
+  it "intersection with partially negative area." do
+    area = areas(:a2)
+    au=area_updates(:au1)
+    au.find_intersection area
+    i=au.intersections.last
+    i.x.should eq(8)
+    i.y.should eq(10)
+    i.w.should eq(17)
+    i.h.should eq(10)
+  end
+  it "intersection with partially negative area on 0." do
+    area = areas(:a2)
+    au=area_updates(:au6)
+    au.find_intersection area
+    i=au.intersections.last
+    i.x.should eq(0)
+    i.y.should eq(0)
+    i.w.should eq(9)
+    i.h.should eq(5)
+  end
+  it "intersection with partially negative area and areaUpdate, skewed." do
+    area = areas(:a2)
+    au=area_updates(:au7)
+    au.find_intersection area
+    i=au.intersections.last
+    i.x.should eq(-20)
+    i.y.should eq(-10)
+    i.w.should eq(40)
+    i.h.should eq(20)
+  end
+  it "intersection with partially negative area and completely negative areaUpdate." do
+    area = areas(:a2)
+    au=area_updates(:au8)
+    au.find_intersection area
+    i=au.intersections.last
+    i.x.should eq(-20)
+    i.y.should eq(-10)
+    i.w.should eq(5)
+    i.h.should eq(5)
+  end
+  it "no intersections. negative lat range" do
+    a1 = areas(:a2)
+    au=area_updates(:au9)
+    n=au.intersections.count
+    au.find_intersection a1
+    # none are added.
+    au.intersections.count.should eq(n)
+  end
 end
     #   #i4
     #   # {:y=>7.0, :h=>9.0, :x=>11.0, :w=>7.0} 

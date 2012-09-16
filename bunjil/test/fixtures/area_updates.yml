@@ -87,9 +87,10 @@ au4:
   br_lat: 16
   bl_lon: 12
   bl_lat: 16
-  # same as area
+
+# same as area
+#Area Update: {:y=>6.0, :height=>12.0, :x=>10.0, :width=>10.0}
 au5:
-  #feed_item: :fi1
   tl_lat: 6
   tl_lon: 10
   tr_lon: 20
@@ -99,10 +100,9 @@ au5:
   bl_lon: 10
   bl_lat: 18
 
-  # no inter
-    # {:y=>0, :h=>5, :x=>0, :w=>9}
+# no inter
+# {:y=>0, :h=>5, :x=>0, :w=>9}
 au6:
-  #feed_item: :fi1
   tl_lat: 0
   tl_lon: 0
   tr_lon: 9
@@ -111,4 +111,31 @@ au6:
   br_lat: 5
   bl_lon: 0
   bl_lat: 5
+au7:
+  tl_lat: -10
+  tl_lon: -20
+  tr_lon: 20
+  tr_lat: -10
+  br_lon: 3
+  br_lat: 10
+  bl_lon: -20
+  bl_lat: 10
+au8:
+  tl_lat: -10
+  tl_lon: -20
+  tr_lon: -15
+  tr_lat: -10
+  br_lon: -15
+  br_lat: -5
+  bl_lon: -20
+  bl_lat: -5
+au9:
+  tl_lat: -10
+  tl_lon: -60
+  tr_lon: -55
+  tr_lat: -10
+  br_lon: -58
+  br_lat: -5
+  bl_lon: -60
+  bl_lat: -5
 

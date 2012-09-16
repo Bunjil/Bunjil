@@ -22,11 +22,18 @@ a1:
   height: 12
 a2:
   name: "Test2"
-  description: "A Test Area 2"
-  left_lon: 53
-  top_lat: -5
+  description: "A Test Area With Negatives"
+  left_lon: -50
+  top_lat: -50
   width: 100
   height: 100
+a3:
+  name: "Cover entire earth"
+  description: "Desc: Cover entire earth."
+  left_lon: -180
+  top_lat: -90
+  width: 360
+  height: 180
 
 #   Area.create name: "Test", description: "A Test Area",
 #     left_lon: 10, top_lat: 6, width: 10, height: 12

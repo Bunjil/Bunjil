@@ -7,7 +7,8 @@
 #  name       :string(255)
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#
+#LandsatRssReaderJob.new.perform
+
 
 require 'test_helper'
 require 'feedzirra'
