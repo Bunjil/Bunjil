@@ -1,3 +1,12 @@
+=begin
+  * Name: Image Downloader Job
+  * Description: Checks the database for any pending download tasks, 
+                logs in to earth explorer and download the 
+                respective tar.gz file. Band 3 and 4 is then extracted from the
+                archive. The archive is deleted and the images are passed to the 
+                NDVI image processor.
+  * Author: Aaron Lumaksana
+=end
 require 'open-uri'
 require 'rubygems/package'
 require 'zlib'
@@ -26,7 +35,7 @@ class ImageDownloaderJob
           # to get the name of the image from the url.
           #archive_name = download_task.area_update.area_update_id
 
-          archive_name = download_task.area_update.id
+          archive_name = download_task.area_update.feed_item.scene_id
           # log downloading image
           log_downloading_image(archive_name)
           archive_file = "#{ARCHIVE_PATH}#{archive_name}"
@@ -42,6 +51,7 @@ class ImageDownloaderJob
 
             download_task.retries += 1
             download_task.save
+            download_tasl.reload
             if(download_task.retries >= NUMBER_OF_RETRIES)
 
               File.delete("#{ARCHIVE_PATH}#{archive_name}")
@@ -87,11 +97,7 @@ class ImageDownloaderJob
     login_form.password = 'Batman2012'
     agent.submit(login_form)
     agent.pluggable_parser.default = Mechanize::Download
-    # agent.max_file_buffer = 100
-    # agent.get("http://earthexplorer.usgs.gov/download/3373/LE71290232012244EDC00/STANDARD//").save('image_id')
     agent.get("http://earthexplorer.usgs.gov/download/3373/#{image_id}/STANDARD//").save(image_id)
-    # agent.progressbar{ agent.download("http://earthexplorer.usgs.gov/download/3373/#{image_id}/STANDARD//",image_id)}
-
   end
 
   def perform_ndvi(image_id, area_update)
