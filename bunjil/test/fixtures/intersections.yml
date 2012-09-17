@@ -15,7 +15,14 @@
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
-
+int1:
+    area: :a1
+    area_update: :au1
+    reported: false
+    x: 11 
+    y: 7 
+    w: 7 
+    h: 9
     #i6
     #nil
     #i5

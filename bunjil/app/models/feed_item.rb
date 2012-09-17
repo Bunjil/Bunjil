@@ -15,6 +15,10 @@ class FeedItem < ActiveRecord::Base
   belongs_to :feed
   has_many :area_updates
 
+  after_initialize :init
+  def init
+    self.is_intersection_checked = false if is_intersection_checked.nil? end
+
   # Returns the working url
   def get_formatted_url
   	# remove 5 characters after each &

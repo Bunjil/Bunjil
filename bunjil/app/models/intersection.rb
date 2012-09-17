@@ -22,7 +22,8 @@ class Intersection < ActiveRecord::Base
   after_initialize :init
 
   def init
-    reported = false
+    self.reported = false if reported.nil?
+    #logger.debug "INIT"
   end
 
   def is_reported?
