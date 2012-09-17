@@ -1,0 +1,11 @@
+<% title "Preview" %>
+<h1>Report Preview</h1>
+<p>
+	User Reporting: <%= @report.user.username %></br>
+	Area: <%= @report.intersection.area.name %></br>
+	Description: <%= @report.description %></br>
+	<% @report.location.each do |loc| -%>
+		Long Lat: <%=loc%></br>
+	<% end -%>
+	
+</p>
