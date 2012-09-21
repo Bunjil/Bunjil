@@ -52,7 +52,7 @@ class ImageProcessorJob
     return Pixel.new(  0,  56,   0) if pixel_value <= 0.850
     return Pixel.new(  0,  31,   0) if pixel_value <= 0.950
     return Pixel.new(  0,   0,   0) if pixel_value <= 1.000
-    return Pixel.new(255, 255, 255)
+    return Pixel.new(  0,   0,   0)
   end
 
   def calculate_ndvi(nir, red)
