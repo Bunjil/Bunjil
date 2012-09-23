@@ -44,13 +44,14 @@ class UsersController < ApplicationController
 
   def area_observation
     @user = current_user
-    if !params[:intersection]
-      redirect_to root_url, :flash => { :alert => "Not a valid Intersection" }
+    if @user.area.nil?
+      redirect_to root_url, :flash => { :alert => "User does not have area" }
     else
-      intersection = Intersection.find(params[:intersection])
-      last_intersection = Intersection.where(:area_id => intersection.area_id).where('id != ?', intersection.id).where('created_at < ?',intersection.created_at).order('created_at DESC').first
-      if !last_intersection
-        redirect_to root_url, :flash => { :alert => "Not a valid Intersection, no previous image" }
+      query = Intersection.where(:area_id => @user.area.id).order('created_at DESC')
+      intersection = query.first
+      last_intersection = query.second
+      if !last_intersection || !intersection
+        redirect_to root_url, :flash => { :alert => "Could not find a valid intersection for this area" }
       else
         @area_update_old = last_intersection.area_update
         @area_update = intersection.area_update
