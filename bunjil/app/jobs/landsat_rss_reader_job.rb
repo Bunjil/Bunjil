@@ -2,35 +2,71 @@ require 'feedzirra'
 require 'nokogiri'
 
 class LandsatRssReaderJob
-
-  def perform
+  def perform limit=-1
     feed = Feed.find_by_name("LandSat7")
+    area_updates=[]
     rss_data = Feedzirra::Feed.fetch_and_parse(feed.url)
     # Note for some reason all tag names are different.
 
     # If the feed fails to be parses/fetched, just give up.
     return if rss_data.is_a?(Fixnum) 
 
-    rss_data.entries.each do |item|
+    rss_data.entries.each_with_index do |item,ind|
+      a=nil
       # Only new entries: ignore entries with duplicate scene id.
-      handle_new_item(item, feed.id) unless FeedItem.find_by_scene_id item.summary.scan(/Scene ID: (\w*)/).first
+      a=handle_new_item(item, feed.id) unless FeedItem.find_by_scene_id item.summary.scan(/Scene ID: (\w*)/).first
+      # only check ones that get saved.
+      area_updates.push(a) unless a==nil
+      break if ind==limit
     end
+    IntersectionCheckingJob.perform area_updates
+    area_updates
   end
 
-  # This runs for each new feed.
+  # This runs for each new feed item.
   def handle_new_item(item, feed_id)
     feed_item          = FeedItem.new
     feed_item.scene_id = item.summary.scan(/Scene ID: (\w*)/)[0][0] # Matches go in a 2D array
     feed_item.feed_id  = feed_id
     feed_item.link     = item.url
-    
-    feed_item.save
-    # Parse for points and url.
+    if feed_item.save
+      # Create area update with url and feed lat/long points.
+      area_update = AreaUpdate.new
+      # return it if it's valid and requires intersection check.
+      attrs=init_area_update(feed_item, item.summary)
+      if area_update.init(attrs)
+        return area_update end
+    end
+    return nil
+  end
 
-    # Create area update with url and feed lat/long points.
-    area_update = AreaUpdate.new
-    area_update.init(feed_item, item.summary)
-    area_update.handle
+  def init_area_update item, desc
+    doc=Nokogiri::HTML(open(item.get_formatted_url))
+    # note, these do change.
+    attrs={}
+    attrs[:tl_lat]=search doc, 'Corner UL Latitude Product'
+    attrs[:tr_lat]=search doc, 'Corner UR Latitude Product'
+    attrs[:br_lat]=search doc, 'Corner LR Latitude Product'
+    attrs[:bl_lat]=search doc, 'Corner LL Latitude Product'
+    attrs[:tl_lon]=search doc, 'Corner UL Longitude Product'
+    attrs[:tr_lon]=search doc, 'Corner UR Longitude Product'
+    attrs[:br_lon]=search doc, 'Corner LR Longitude Product'
+    attrs[:bl_lon]=search doc, 'Corner LL Longitude Product'
+    attrs[:cloud_cover]=search doc, 'Cloud Cover'
+    attrs[:feed_item_id]=item.id
+    attrs[:image_url]=format_image_url desc
+    attrs
+  end
+  # uses item.description to get the image url
+  def format_image_url raw
+    doc=Nokogiri::HTML(raw)
+    doc.xpath('//a[1]/@href').text
+  end
+  # search the lansat specific image page for some text in the table and
+    # return it's value.
+  def search(doc,search)
+    basePath = '/html/body/div/table/tbody/tr/td/a[text() ="'
+    doc.xpath(basePath+search+'"]/../../td[2]').text
   end
 
 end

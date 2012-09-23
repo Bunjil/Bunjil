@@ -2,14 +2,15 @@ require 'spec_helper'
 
 describe AreaUpdate, "area_update" do
 
-  it "loads" do
+  it "loads fixtures".titleize do
     true.should eq(AreaUpdate.count>0)
+    true.should eq(Area.count>0)
   end
-  it "can get points correctly" do
+  it "can get points correctly".titleize do
     area_updates(:au1).get_points.should eq(
       {:height=>10.0,:y=>10.0,:x=>8.0,:width=>17.0})
   end
-  it "intersection with skewed bot right" do
+  it "intersection with skewed bot right".titleize do
     a1 = areas(:a1)
     au=area_updates(:au1)
     au.find_intersection a1
@@ -19,7 +20,7 @@ describe AreaUpdate, "area_update" do
     i.w.should eq(10)
     i.h.should eq(8)
   end
-  it "intersection with skewed 5 down in the top left" do
+  it "intersection with skewed 5 down in the top left".titleize do
     a1 = areas(:a1)
     au=area_updates(:au2)
     au.find_intersection a1
@@ -29,7 +30,7 @@ describe AreaUpdate, "area_update" do
     i.w.should eq(10)
     i.h.should eq(4)
   end
-  it "intersection with square" do
+  it "intersection with square".titleize do
     a1 = areas(:a1)
     au=area_updates(:au3)
     au.find_intersection a1
@@ -39,7 +40,7 @@ describe AreaUpdate, "area_update" do
     i.w.should eq(10)
     i.h.should eq(8)
   end
-  it "intersection encapsulated within the area, skewed both bottom points" do
+  it "intersection encapsulated within the area, skewed both bottom points".titleize do
     a1 = areas(:a1)
     au=area_updates(:au4)
     au.find_intersection a1
@@ -49,7 +50,7 @@ describe AreaUpdate, "area_update" do
     i.w.should eq(7)
     i.h.should eq(9)
   end
-  it "intersection with same." do
+  it "intersection with exact same shape.".titleize do
     a1 = areas(:a1)
     au=area_updates(:au5)
     au.find_intersection a1
@@ -59,7 +60,7 @@ describe AreaUpdate, "area_update" do
     i.w.should eq(10)
     i.h.should eq(12)
   end
-  it "no intersections. positive long range" do
+  it "no intersections. positive long range".titleize do
     a1 = areas(:a1)
     au=area_updates(:au6)
     n=au.intersections.count
@@ -67,7 +68,7 @@ describe AreaUpdate, "area_update" do
     # none are added.
     au.intersections.count.should eq(n)
   end
-  it "intersection gets added." do
+  it "intersection gets added.".titleize do
     n=Intersection.count
     a1 = areas(:a1)
     au=area_updates(:au1)
@@ -75,7 +76,7 @@ describe AreaUpdate, "area_update" do
     # none are added.
     Intersection.count.should eq(n+1)
   end
-  it "intersection with partially negative area." do
+  it "intersection with partially negative area.".titleize do
     area = areas(:a2)
     au=area_updates(:au1)
     au.find_intersection area
@@ -85,7 +86,7 @@ describe AreaUpdate, "area_update" do
     i.w.should eq(17)
     i.h.should eq(10)
   end
-  it "intersection with partially negative area on 0." do
+  it "intersection with partially negative area on 0.".titleize do
     area = areas(:a2)
     au=area_updates(:au6)
     au.find_intersection area
@@ -95,7 +96,7 @@ describe AreaUpdate, "area_update" do
     i.w.should eq(9)
     i.h.should eq(5)
   end
-  it "intersection with partially negative area and areaUpdate, skewed." do
+  it "intersection with partially negative area and areaUpdate, skewed.".titleize do
     area = areas(:a2)
     au=area_updates(:au7)
     au.find_intersection area
@@ -105,7 +106,7 @@ describe AreaUpdate, "area_update" do
     i.w.should eq(40)
     i.h.should eq(20)
   end
-  it "intersection with partially negative area and completely negative areaUpdate." do
+  it "intersection with partially negative area and completely negative areaUpdate.".titleize do
     area = areas(:a2)
     au=area_updates(:au8)
     au.find_intersection area
@@ -115,7 +116,7 @@ describe AreaUpdate, "area_update" do
     i.w.should eq(5)
     i.h.should eq(5)
   end
-  it "no intersections. negative lat range" do
+  it "no intersections. negative lat range".titleize do
     a1 = areas(:a2)
     au=area_updates(:au9)
     n=au.intersections.count
@@ -149,7 +150,7 @@ end
     #     :br_lon => 25, :br_lat => 20, :bl_lon => 15, :bl_lat => 20
 
     
-    # # 5 down, skewed
+    # # 5.titleize down, skewed
     #   #14#    ---20
     #   #15# 10-    -
     #   ####  -     -

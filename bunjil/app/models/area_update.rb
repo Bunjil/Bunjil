@@ -43,40 +43,27 @@ class AreaUpdate < ActiveRecord::Base
   # sets required information about an image except 
     # the image url because it's not on the details page.
     # must call save after. Must pass in the feed item creating it.
-  def init(item, desc)
-  	doc=Nokogiri::HTML(open(item.get_formatted_url))
-  	self[:tl_lat]=search(doc, 'Corner UL Latitude Product')
-  	self[:tr_lat]=search(doc, 'Corner UR Latitude Product')
-  	self[:br_lat]=search doc, 'Corner LR Latitude Product'
-  	self[:bl_lat]=search doc, 'Corner LL Latitude Product'
-  	self[:tl_lon]=search doc, 'Corner UL Longitude Product'
-  	self[:tr_lon]=search doc, 'Corner UR Longitude Product'
-  	self[:br_lon]=search doc, 'Corner LR Longitude Product'
-  	self[:bl_lon]=search doc, 'Corner LL Longitude Product'
-  	self[:cloud_cover]=search doc, 'Cloud Cover'
-  	self[:feed_item_id]=item.id
-    image_url=format_image_url desc
-    # TODO: use real urls.
-    band3_url=image_url
-    band4_url=image_url
+    # returns if the system should take it into account or discard it.
+  def init attrs
+    self.attributes=attrs
+    #band3_url=image_url
+    #band4_url=image_url
+    return can_use?
   end
-
   def handle
     #puts au.image_url
-    if should_update?
+    is_int=false
+    Area.all.each do |a|
+      is_int=true if find_intersection a
+    end
+    if is_int #if there was one or more intersections
       save
       create_download_job # uses the image downloader
     end
-
-    Area.all.each do |a|
-      find_intersection a
-      # TODO: Now destroy yourself...
-    end
   end
 
-  # Creates an intersection and returns true if this area meets 
-    # cloud cover requirements and intersects with an Area. 
-  def should_update?
+  # cloud cover requirements.
+  def can_use?
   	if cloud_cover.to_i<=@@min_cloud_cover
   		true
   	end
@@ -144,16 +131,4 @@ class AreaUpdate < ActiveRecord::Base
     dl_task.save
   end
 
-  private
-  # uses item.description to get the image url
-  def format_image_url raw
-    doc=Nokogiri::HTML(raw)
-    doc.xpath('//a[1]/@href').text
-  end
-  # search the lansat specific image page for some text in the table and
-    # return it's value.
-  def search(doc,search)
-    basePath = '/html/body/div/table/tbody/tr/td/a[text() ="'
-    doc.xpath(basePath+search+'"]/../../td[2]').text
-  end
 end
