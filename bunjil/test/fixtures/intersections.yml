@@ -23,6 +23,14 @@ int1:
     y: 7 
     w: 7 
     h: 9
+int2:
+    area: :a1
+    area_update: :au1
+    reported: true
+    x: 11 
+    y: 7 
+    w: 7 
+    h: 9
     #i6
     #nil
     #i5
