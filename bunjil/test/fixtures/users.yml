@@ -14,15 +14,10 @@
 #  description   :text(255)
 #
 
-# password: "secret"
-foo:
-  username: foo
-  email: foo@example.com
-  password_hash: 3488f5f7efecab14b91eb96169e5e1ee518a569f
-  password_salt: bef65e058905c379436d80d1a32e7374b139e7b0
-
-bar:
-  username: bar
-  email: bar@example.com
-  password_hash: 3488f5f7efecab14b91eb96169e5e1ee518a569f
-  password_salt: bef65e058905c379436d80d1a32e7374b139e7b0
+utest:
+  username: test
+  email: test@test.com
+  password_hash: $2a$10$G5Kiw30ydqfhUz2QKPA3Xu4h7.eZ5paFTSt6jqB0FR5Ck0u7jyfOi
+  password_salt: $2a$10$G5Kiw30ydqfhUz2QKPA3Xu
+  area: :a1
+#pass: asdf
