@@ -18,7 +18,7 @@ class Area < ActiveRecord::Base
   has_many :intersections
   has_many :area_updates, :through => :intersections
 
-  has_one :subscriber, :class_name => "User"
+  has_one :subscriber, :class_name => "User", :conditions => ["\"users\".role_id = (SELECT id FROM roles WHERE name = 'subscriber')"]
 
   def latest_image_url
   	area_updates.first.try(:image_url)
