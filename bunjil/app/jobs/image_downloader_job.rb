@@ -10,10 +10,12 @@
 require 'open-uri'
 require 'rubygems/package'
 require 'zlib'
-require 'fileutils'
+require   'fileutils'
 require 'net/https'
-require 'net/http'
+require   'net/http'
 require 'mechanize'
+
+
 
 class ImageDownloaderJob
 
@@ -40,7 +42,7 @@ class ImageDownloaderJob
           log_downloading_image(archive_name)
           archive_file = "#{ARCHIVE_PATH}#{archive_name}"
           begin
-            download_from_earth_explorer(archive_name)
+            download_from_earth_explorer(q)
             #log download success
             log_download_success(archive_name)
             # Delete task once image is downloaded
@@ -59,7 +61,7 @@ class ImageDownloaderJob
             end
           end
 
-          extract_tiffs("#{IMAGE_PATH}",archive_file)
+          extract_tiffs("#{archive_name}")
           perform_ndvi(archive_name,download_task.area_update)
         }
       end
