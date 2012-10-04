@@ -51,7 +51,7 @@ class ImageDownloaderJob
 
             download_task.retries += 1
             download_task.save
-            download_tasl.reload
+            download_task.reload
             if(download_task.retries >= NUMBER_OF_RETRIES)
 
               File.delete("#{ARCHIVE_PATH}#{archive_name}")
