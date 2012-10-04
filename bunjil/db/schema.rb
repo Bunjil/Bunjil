@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120908154936) do
+ActiveRecord::Schema.define(:version => 20120917023014) do
 
   create_table "area_update_download_tasks", :force => true do |t|
     t.string   "image_archive_url"
@@ -70,10 +70,11 @@ ActiveRecord::Schema.define(:version => 20120908154936) do
 
   create_table "feed_items", :force => true do |t|
     t.string   "scene_id"
-    t.string   "link"
     t.integer  "feed_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
+    t.string   "link"
+    t.boolean  "is_intersection_checked"
   end
 
   create_table "feeds", :force => true do |t|

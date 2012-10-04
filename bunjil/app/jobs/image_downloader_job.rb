@@ -10,10 +10,11 @@
 require 'open-uri'
 require 'rubygems/package'
 require 'zlib'
-require   'fileutils'
+require 'fileutils'
 require 'net/https'
-require   'net/http'
+require 'net/http'
 require 'mechanize'
+
 
 
 
@@ -32,17 +33,17 @@ class ImageDownloaderJob
     while(download_tasks.count > 0)
 
       # checks to see if there are any download task and to skip if there aren't any.
-      download_tasks.each do |download_task|
+      download_tasks.each do |download_task|  
         threads << Thread.new(download_task){
           # to get the name of the image from the url.
           #archive_name = download_task.area_update.area_update_id
 
           archive_name = download_task.area_update.feed_item.scene_id
           # log downloading image
-          log_downloading_image(archive_name)
+          log_downloading_image("#{archive_name}")
           archive_file = "#{ARCHIVE_PATH}#{archive_name}"
           begin
-            download_from_earth_explorer(q)
+            download_from_earth_explorer(archive_name)
             #log download success
             log_download_success(archive_name)
             # Delete task once image is downloaded
@@ -61,11 +62,12 @@ class ImageDownloaderJob
             end
           end
 
-          extract_tiffs("#{archive_name}")
+          extract_tiffs("#{archive_file}")
           perform_ndvi(archive_name,download_task.area_update)
         }
       end
       threads.each { |aThread|  aThread.join }
+      AreaUpdateDownloadTask.reload
       download_tasks = AreaUpdateDownloadTask.find(:all, :limit => NUMBER_OF_THREADS)
     end
 
@@ -93,7 +95,8 @@ class ImageDownloaderJob
 
   def download_from_earth_explorer(image_id)
     agent = Mechanize.new
-    page = agent.get('https://earthexplorer.usgs.gov/login')
+    agent.agent.http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+    page = agent.get('https://earthexplorer.usgs.gov/login/')
     login_form = page.forms[0]
     login_form.username = 'bunjil'
     login_form.password = 'Batman2012'
