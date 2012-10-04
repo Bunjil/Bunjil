@@ -1,13 +1,15 @@
+/
+The RSS reader job handles new items in the feed and any other jobs needed to be run with data from the new items.
+/
 require 'feedzirra'
 require 'nokogiri'
 
 class LandsatRssReaderJob
-  def perform limit=-1
+  def perform (limit=-1, autoDL=false)
     feed = Feed.find_by_name("LandSat7")
     area_updates=[]
     rss_data = Feedzirra::Feed.fetch_and_parse(feed.url)
     # Note for some reason all tag names are different.
-
     # If the feed fails to be parses/fetched, just give up.
     return if rss_data.is_a?(Fixnum) 
 
@@ -19,7 +21,7 @@ class LandsatRssReaderJob
       area_updates.push(a) unless a==nil
       break if ind==limit
     end
-    IntersectionCheckingJob.perform area_updates
+    IntersectionCheckingJob.perform area_updates, autoDL
     area_updates
   end
 

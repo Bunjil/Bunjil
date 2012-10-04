@@ -1,3 +1,6 @@
+/
+An area is a subscribed location in the system.
+/
 # == Schema Information
 #
 # Table name: areas

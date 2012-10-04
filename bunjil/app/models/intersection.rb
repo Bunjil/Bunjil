@@ -1,3 +1,6 @@
+/
+An intersection stores the coordinates where an Area Update and Area intersect.
+/
 # == Schema Information
 #
 # Table name: intersections
