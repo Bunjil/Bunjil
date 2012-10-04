@@ -7,6 +7,7 @@ require 'nokogiri'
 class LandsatRssReaderJob
   def perform (limit=-1, autoDL=false)
     feed = Feed.find_by_name("LandSat7")
+    ActiveRecord::Base.logger.debug "Fetching Feed... #{feed.name}"
     area_updates=[]
     rss_data = Feedzirra::Feed.fetch_and_parse(feed.url)
     # Note for some reason all tag names are different.
@@ -16,7 +17,8 @@ class LandsatRssReaderJob
     rss_data.entries.each_with_index do |item,ind|
       a=nil
       # Only new entries: ignore entries with duplicate scene id.
-      a=handle_new_item(item, feed.id) unless FeedItem.find_by_scene_id item.summary.scan(/Scene ID: (\w*)/).first
+      ActiveRecord::Base.logger.debug 'Reading an RSS feed item...'
+      a=handle_new_item(item, feed.id) unless FeedItem.find_by_scene_id item.summary.scan(/Scene ID: (\w*)/)[0][0]
       # only check ones that get saved.
       area_updates.push(a) unless a==nil
       break if ind==limit
@@ -31,6 +33,7 @@ class LandsatRssReaderJob
     feed_item.scene_id = item.summary.scan(/Scene ID: (\w*)/)[0][0] # Matches go in a 2D array
     feed_item.feed_id  = feed_id
     feed_item.link     = item.url
+    ActiveRecord::Base.logger.debug "This item is new to the database, id: #{feed_item.scene_id}"
     if feed_item.save
       # Create area update with url and feed lat/long points.
       area_update = AreaUpdate.new
