@@ -18,11 +18,16 @@ class LandsatRssReaderJob
       a=nil
       # Only new entries: ignore entries with duplicate scene id.
       ActiveRecord::Base.logger.debug 'Reading an RSS feed item...'
-      a=handle_new_item(item, feed.id) unless FeedItem.find_by_scene_id item.summary.scan(/Scene ID: (\w*)/)[0][0]
+      scene_id=item.summary.scan(/Scene ID: (\w*)/)[0][0]
+      if FeedItem.find_by_scene_id scene_id
+        ActiveRecord::Base.logger.debug "This Item already exists in the DB (scene id: #{scene_id})"
+      else
+        a=handle_new_item(item, feed.id) end 
       # only check ones that get saved.
       area_updates.push(a) unless a==nil
       break if ind==limit
     end
+    ActiveRecord::Base.logger.debug "Calling intersection checking job with #{area_updates.count} new area updates."
     IntersectionCheckingJob.perform area_updates, autoDL
     area_updates
   end
@@ -40,7 +45,11 @@ class LandsatRssReaderJob
       # return it if it's valid and requires intersection check.
       attrs=init_area_update(feed_item, item.summary)
       if area_update.init(attrs)
-        return area_update end
+        ActiveRecord::Base.logger.debug " **** New Area Update added."
+        return area_update
+      else
+        ActiveRecord::Base.logger.debug "Rejected due to cloud cover. (It is #{attrs[:cloud_cover]})"
+      end
     end
     return nil
   end

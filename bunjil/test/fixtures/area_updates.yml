@@ -26,7 +26,7 @@
     #20#    15----25
     # {:y=>10.0, :h=>10.0, :x=>8.0, :w=>17.0} 
 au1:
-  #feed_item: :fi1
+  feed_item: :fi1
   tl_lat: 10
   tl_lon: 8
   tr_lon: 20
@@ -44,7 +44,7 @@ au1:
     #25# 10----20
     # {:y=>14.0, :h=>11.0, :x=>10.0, :w=>10.0} 
 au2:
-  #feed_item: :fi1
+  feed_item: :fi1
   tl_lat: 15
   tl_lon: 10
   tr_lon: 20
@@ -61,7 +61,7 @@ au2:
     #20#  10----20
     # {:y=>10.0, :h=>10.0, :x=>10.0, :w=>10.0} 
 au3:
-  #feed_item: :fi1
+  feed_item: :fi1
   tl_lat: 10
   tl_lon: 10
   tr_lon: 20
@@ -78,7 +78,7 @@ au3:
     #16#   12--16
     # {:y=>7.0, :h=>9.0, :x=>11.0, :w=>7.0} 
 au4:
-  #feed_item: :fi1
+  feed_item: :fi1
   tl_lat: 7
   tl_lon: 11
   tr_lon: 18
@@ -91,6 +91,7 @@ au4:
 # same as area
 #Area Update: {:y=>6.0, :height=>12.0, :x=>10.0, :width=>10.0}
 au5:
+  feed_item: :fi1
   tl_lat: 6
   tl_lon: 10
   tr_lon: 20
@@ -103,6 +104,7 @@ au5:
 # no inter
 # {:y=>0, :h=>5, :x=>0, :w=>9}
 au6:
+  feed_item: :fi1
   tl_lat: 0
   tl_lon: 0
   tr_lon: 9
@@ -112,6 +114,7 @@ au6:
   bl_lon: 0
   bl_lat: 5
 au7:
+  feed_item: :fi1
   tl_lat: -10
   tl_lon: -20
   tr_lon: 20
@@ -121,6 +124,7 @@ au7:
   bl_lon: -20
   bl_lat: 10
 au8:
+  feed_item: :fi1
   tl_lat: -10
   tl_lon: -20
   tr_lon: -15
@@ -130,6 +134,7 @@ au8:
   bl_lon: -20
   bl_lat: -5
 au9:
+  feed_item: :fi1
   tl_lat: -10
   tl_lon: -60
   tr_lon: -55
