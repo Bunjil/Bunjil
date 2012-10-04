@@ -43,12 +43,8 @@ class User < ActiveRecord::Base
     BCrypt::Engine.hash_secret(pass, password_salt)
   end
 
-  def is_volunteer?
-    @is_volunteer ||= self.role.name == "volunteer"
-  end
-
-  def is_subscriber?
-    @is_subscriber ||= self.role.name == "subscriber"
+  Role.all.each do |role|
+    define_method("is_#{role.name}?") { self.role.name == "#{role.name}" }
   end
 
   private
