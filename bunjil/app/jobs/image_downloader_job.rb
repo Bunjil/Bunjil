@@ -54,7 +54,6 @@ class ImageDownloaderJob
 
             download_task.retries += 1
             download_task.save
-            download_task.reload
             if(download_task.retries >= NUMBER_OF_RETRIES)
 
               File.delete("#{ARCHIVE_PATH}#{archive_name}")
@@ -67,7 +66,7 @@ class ImageDownloaderJob
         }
       end
       threads.each { |aThread|  aThread.join }
-      AreaUpdateDownloadTask.reload
+
       download_tasks = AreaUpdateDownloadTask.find(:all, :limit => NUMBER_OF_THREADS)
     end
 
