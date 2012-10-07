@@ -16,10 +16,14 @@ class ImageProcessorJob
         red_pixel = red_image.pixel_color(x, y).red
         nir_pixel = nir_image.pixel_color(x, y).red
 
-        ndvi = calculate_ndvi(red_pixel, nir_pixel)
+        ndvi = calculate_ndvi(nir_pixel, red_pixel)
 
         ndvi_pixel = color_result(ndvi)
         ndvi_image.pixel_color(x, y, ndvi_pixel)
+      end
+      if ((x * y) % 500) == 0
+        puts 'Red: ' + red_pixel.to_s + ' NIR: ' + nir_pixel.to_s + ' NDVI: ' + ndvi.to_s
+        puts (x * y).to_s + ' pixels processed....'
       end
     end
 
@@ -62,6 +66,7 @@ class ImageProcessorJob
     demoninator = nir + red
     return 0 if demoninator == 0 
 
-    return numerator.to_f / demoninator
+    result = numerator.to_f / demoninator.to_f
+    return result
   end
 end
