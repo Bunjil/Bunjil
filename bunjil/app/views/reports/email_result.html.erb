@@ -1,12 +1,6 @@
 <% title "Email Result" %>
 <h1>Email Has Been Sent!</h1>
 <p>
-	User Reporting: <%= @report.user.username %></br>
-	Area: <%= @report.intersection.area.name %></br>
-	Description: <%= @report.description %></br>
-	<% @report.location.each do |loc| -%>
-		Long Lat: <%=loc%></br>
-	<% end -%>
 
 <p><%= button_to "Back to Profile »", "/user/edit",:class => 'btn btn-primary'%></p>
 	

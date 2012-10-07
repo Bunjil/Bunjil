@@ -12,7 +12,6 @@ class ReportsController < ApplicationController
   def email
     @report=Report.find(params[:id])
     Mailer.send_report(@report, "bunjilforestwatch@gmail.com").deliver
-    flash[:notify] = "email_sent!!"
     render 'reports/email_result'
   end
 end

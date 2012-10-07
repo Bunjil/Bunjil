@@ -7,7 +7,7 @@ def send_report(report, to)
   @report = report
   @name = "test user"
   @home_url  = "http://bunjil.com/"
-  mail(:to => to, :subject => "You have a report for your area.")
+  mail(:to => to, :subject => "Area Report.")
 end
 
 end
