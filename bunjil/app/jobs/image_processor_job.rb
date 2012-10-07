@@ -21,9 +21,10 @@ class ImageProcessorJob
         ndvi_pixel = color_result(ndvi)
         ndvi_image.pixel_color(x, y, ndvi_pixel)
       end
-      if ((x * y) % 500) == 0
-        puts 'Red: ' + red_pixel.to_s + ' NIR: ' + nir_pixel.to_s + ' NDVI: ' + ndvi.to_s
-        puts (x * y).to_s + ' pixels processed....'
+      if (((x + 1) * y) % 500) == 0
+        processed = ((x + 1) * y)
+        total = red_image.columns * red_image.rows
+        puts processed.to_s + ' / ' + total.to_s + ' pixels processed....(' + ((processed.to_f/total.to_f)*100).round(0).to_s + '%)'
       end
     end
 
