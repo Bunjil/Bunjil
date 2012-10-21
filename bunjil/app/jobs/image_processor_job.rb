@@ -1,3 +1,13 @@
+=begin
+  * Name: Image Processor Job
+  * Description: 
+          * Called by the Image Downloader Job
+          * Requires the Band 3 and Band 4 Images
+          * Performs the NDVI Processing
+          * Saves new NDVI Image
+          * Deletes Band 3 and Band 4 Images
+  * Author: David de Souza
+=end
 require 'RMagick'
 include Magick
 
@@ -21,11 +31,11 @@ class ImageProcessorJob
         ndvi_pixel = color_result(ndvi)
         ndvi_image.pixel_color(x, y, ndvi_pixel)
       end
-      if (((x + 1) * y) % 500) == 0
-        processed = ((x + 1) * y)
-        total = red_image.columns * red_image.rows
-        puts processed.to_s + ' / ' + total.to_s + ' pixels processed....(' + ((processed.to_f/total.to_f)*100).round(0).to_s + '%)'
-      end
+      #if (((x + 1) * y) % 500) == 0
+      #  processed = ((x + 1) * y)
+      #  total = red_image.columns * red_image.rows
+      #  puts processed.to_s + ' / ' + total.to_s + ' pixels processed....(' + ((processed.to_f/total.to_f)*100).round(0).to_s + '%)'
+      #end
     end
 
   	ndvi_image.write(destination)
@@ -36,28 +46,28 @@ class ImageProcessorJob
 
   #Returns the NDVI to Color map result for each pixel's NDVI
   def color_result(pixel_value)
-    return Pixel.new(  5,  24,  82) if pixel_value <=-1.000
-    return Pixel.new(  5,  24,  82) if pixel_value <=-0.300 
-    return Pixel.new(255, 255, 255) if pixel_value <=-0.180 
-    return Pixel.new(255, 255, 255) if pixel_value <= 0.000
-    return Pixel.new(206, 197, 180) if pixel_value <= 0.025
-    return Pixel.new(191, 163, 124) if pixel_value <= 0.075
-    return Pixel.new(179, 174,  96) if pixel_value <= 0.125
-    return Pixel.new(163, 181,  80) if pixel_value <= 0.150
-    return Pixel.new(144, 170,  60) if pixel_value <= 0.175
-    return Pixel.new(166, 195,  29) if pixel_value <= 0.233
-    return Pixel.new(135, 183,   3) if pixel_value <= 0.266
-    return Pixel.new(121, 175,   1) if pixel_value <= 0.333
-    return Pixel.new(101, 163,   0) if pixel_value <= 0.366
-    return Pixel.new( 78, 151,   0) if pixel_value <= 0.433
-    return Pixel.new( 43, 132,   4) if pixel_value <= 0.466
-    return Pixel.new(  0, 114,   0) if pixel_value <= 0.550
-    return Pixel.new(  0,  90,   1) if pixel_value <= 0.650
-    return Pixel.new(  0,  73,   0) if pixel_value <= 0.750
-    return Pixel.new(  0,  56,   0) if pixel_value <= 0.850
-    return Pixel.new(  0,  31,   0) if pixel_value <= 0.950
-    return Pixel.new(  0,   0,   0) if pixel_value <= 1.000
-    return Pixel.new(  0,   0,   0)
+    return Pixel.new(  5 * 256,  24 * 256,  82 * 256) if pixel_value <=-1.000
+    return Pixel.new(  5 * 256,  24 * 256,  82 * 256) if pixel_value <=-0.300 
+    return Pixel.new(255 * 256, 255 * 256, 255 * 256) if pixel_value <=-0.180 
+    return Pixel.new(255 * 256, 255 * 256, 255 * 256) if pixel_value <= 0.000
+    return Pixel.new(206 * 256, 197 * 256, 180 * 256) if pixel_value <= 0.025
+    return Pixel.new(191 * 256, 163 * 256, 124 * 256) if pixel_value <= 0.075
+    return Pixel.new(179 * 256, 174 * 256,  96 * 256) if pixel_value <= 0.125
+    return Pixel.new(163 * 256, 181 * 256,  80 * 256) if pixel_value <= 0.150
+    return Pixel.new(144 * 256, 170 * 256,  60 * 256) if pixel_value <= 0.175
+    return Pixel.new(166 * 256, 195 * 256,  29 * 256) if pixel_value <= 0.233
+    return Pixel.new(135 * 256, 183 * 256,   3 * 256) if pixel_value <= 0.266
+    return Pixel.new(121 * 256, 175 * 256,   1 * 256) if pixel_value <= 0.333
+    return Pixel.new(101 * 256, 163 * 256,   0 * 256) if pixel_value <= 0.366
+    return Pixel.new( 78 * 256, 151 * 256,   0 * 256) if pixel_value <= 0.433
+    return Pixel.new( 43 * 256, 132 * 256,   4 * 256) if pixel_value <= 0.466
+    return Pixel.new(  0 * 256, 114 * 256,   0 * 256) if pixel_value <= 0.550
+    return Pixel.new(  0 * 256,  90 * 256,   1 * 256) if pixel_value <= 0.650
+    return Pixel.new(  0 * 256,  73 * 256,   0 * 256) if pixel_value <= 0.750
+    return Pixel.new(  0 * 256,  56 * 256,   0 * 256) if pixel_value <= 0.850
+    return Pixel.new(  0 * 256,  31 * 256,   0 * 256) if pixel_value <= 0.950
+    return Pixel.new(  0 * 256,   0 * 256,   0 * 256) if pixel_value <= 1.000
+    return Pixel.new(  0 * 256,   0 * 256,   0 * 256)
   end
 
   def calculate_ndvi(nir, red)
