@@ -11,10 +11,10 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120917023014) do
+ActiveRecord::Schema.define(:version => 20121021032424) do
 
   create_table "area_update_download_tasks", :force => true do |t|
-    t.string   "image_archive_url"
+    t.text     "image_archive_url"
     t.integer  "area_update_id"
     t.datetime "created_at",                       :null => false
     t.datetime "updated_at",                       :null => false
@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(:version => 20120917023014) do
   create_table "area_updates", :force => true do |t|
     t.integer  "cloud_cover"
     t.integer  "feed_item_id"
-    t.string   "image_url"
+    t.text     "image_url"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
     t.string   "tr_lat"
@@ -37,8 +37,8 @@ ActiveRecord::Schema.define(:version => 20120917023014) do
     t.string   "br_lon"
     t.string   "bl_lat"
     t.string   "bl_lon"
-    t.string   "band3_url"
-    t.string   "band4_url"
+    t.text     "band3_url"
+    t.text     "band4_url"
   end
 
   create_table "areas", :force => true do |t|
@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(:version => 20120917023014) do
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
     t.text     "description"
-    t.string   "name"
+    t.text     "name"
   end
 
   create_table "delayed_jobs", :force => true do |t|
@@ -60,8 +60,8 @@ ActiveRecord::Schema.define(:version => 20120917023014) do
     t.datetime "run_at"
     t.datetime "locked_at"
     t.datetime "failed_at"
-    t.string   "locked_by"
-    t.string   "queue"
+    t.text     "locked_by"
+    t.text     "queue"
     t.datetime "created_at",                :null => false
     t.datetime "updated_at",                :null => false
   end
@@ -69,17 +69,17 @@ ActiveRecord::Schema.define(:version => 20120917023014) do
   add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
 
   create_table "feed_items", :force => true do |t|
-    t.string   "scene_id"
+    t.text     "scene_id"
     t.integer  "feed_id"
     t.datetime "created_at",              :null => false
     t.datetime "updated_at",              :null => false
-    t.string   "link"
+    t.text     "link"
     t.boolean  "is_intersection_checked"
   end
 
   create_table "feeds", :force => true do |t|
-    t.string   "url"
-    t.string   "name"
+    t.text     "url"
+    t.text     "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -106,7 +106,7 @@ ActiveRecord::Schema.define(:version => 20120917023014) do
   end
 
   create_table "roles", :force => true do |t|
-    t.string "name"
+    t.text "name"
   end
 
   create_table "users", :force => true do |t|
@@ -114,11 +114,11 @@ ActiveRecord::Schema.define(:version => 20120917023014) do
     t.string   "email"
     t.string   "password_hash"
     t.string   "password_salt"
-    t.datetime "created_at",                   :null => false
-    t.datetime "updated_at",                   :null => false
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
     t.integer  "area_id"
     t.integer  "role_id"
-    t.text     "description",   :limit => 255
+    t.text     "description"
   end
 
 end
