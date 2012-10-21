@@ -1,0 +1,14 @@
+<% if @user.area.nil? %>
+  <% if @user.is_volunteer? %>
+    <% title "Select an Area" %>
+    Choose a protected area to observe and report on, and help its local group to protect it.
+    <%= render 'area_select_list_view' %>
+  <% else %>
+    As a subscriber/local group, you must add the area you protect so other people can volunteer to monitor it for you.
+    <% title "Add your Area" %>
+    <%= render 'new_area_form' %>
+  <% end %>
+<% else %>
+  <p>Your area is: <%= @user.area.name %>.</p>
+<% end %>
+  

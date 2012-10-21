@@ -1,0 +1,30 @@
+<%= "It looks like you haven't selected an area yet! Choose one below." unless @user.area %> 
+
+<div>
+  <table class="table table-striped">
+    <caption>Select an area</caption>
+    <thead>
+      <tr>
+        <th class="column-small">Photo</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th class="column-small"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @areas.each do |area| %>
+        <tr class="tall-row">
+          <td><%= image_tag area.latest_image_url %></td>
+          <td><%= area.name %></td>
+          <td><%= area.description %></td>
+          <td>
+            <%= form_for @user do |f| %>
+              <%= hidden_field_tag "user[area_id]", area.id %>
+              <%= f.submit raw(tick_icon), :class => 'btn btn-primary' %>
+            <% end %>  
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

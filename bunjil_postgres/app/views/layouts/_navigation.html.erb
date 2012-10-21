@@ -1,0 +1,29 @@
+<a class="btn btn-navbar" data-target=".nav-collapse" data-toggle="collapse">
+  <span class="icon-bar"></span>
+  <span class="icon-bar"></span>
+  <span class="icon-bar"></span>
+</a>
+<a class="brand" href="/">Bunjil Forest Watch</a>
+  <div class="container-fluid nav-collapse">
+    <ul class="nav">
+      <li class=<%=is_current_uri?("/")%>>
+        <%= link_to "Home", "/"  %></li>
+      <li class=<%=is_current_uri?("/about")%>>
+        <%= link_to "About", %></li>
+      <!-- Show when signed in. -->
+      <% if logged_in? %>
+        <li class=<%=is_current_uri?("/user/edit")%>>
+          <%= link_to "Profile", "/user/edit" %></li>
+        <li class=<%=is_current_uri?("/area")%>>
+        <%= link_to "Observatory", '/user/area_observation' %></li>
+        <li><%= link_to "Sign Out", "/logout", method: "delete" %></li>
+      <% else %>
+        <li class=<%=is_current_uri?("/login")%>>
+          <%= link_to "Sign In", "/login"  %></li>
+        <li class=<%=is_current_uri?("/signup")%>>
+          <%= link_to "Sign Up", signup_path  %></li>
+      <% end %>
+
+
+    </ul>
+  </div><!--/.nav-collapse -->

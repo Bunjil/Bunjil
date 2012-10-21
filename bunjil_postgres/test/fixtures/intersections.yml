@@ -1,0 +1,45 @@
+# == Schema Information
+#
+# Table name: intersections
+#
+#  id             :integer          not null, primary key
+#  reported       :boolean
+#  area_id        :integer
+#  area_update_id :integer
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#  x              :integer
+#  y              :integer
+#  w              :integer
+#  h              :integer
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+int1:
+    area: :a1
+    area_update: :au1
+    reported: false
+    x: 11 
+    y: 7 
+    w: 7 
+    h: 9
+int2:
+    area: :a1
+    area_update: :au1
+    reported: true
+    x: 11 
+    y: 7 
+    w: 7 
+    h: 9
+    #i6
+    #nil
+    #i5
+    # {:x=>10, :y=>6, :w=>10, :h=>12}
+    #i4
+    # {:y=>7.0, :h=>9.0, :x=>11.0, :w=>7.0} 
+    #i3
+    # {:y=>10.0, :h=>8.0, :x=>10.0, :w=>10.0} 
+    #i2
+    # {:y=>14.0, :h=>4.0, :x=>10.0, :w=>10.0} 
+    #i1
+    # {:y=>10.0, :h=>8.0, :x=>8.0, :w=>10.0} 

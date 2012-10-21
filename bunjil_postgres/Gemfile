@@ -1,0 +1,63 @@
+source 'https://rubygems.org'
+
+gem 'rails', '3.2.2'
+
+# Bundle edge Rails instead:
+# gem 'rails', :git => 'git://github.com/rails/rails.git'
+
+gem 'sqlite3'
+
+# KG 17/7 for testing
+group :test do
+	gem 'turn', '< 0.8.3'
+end 
+gem "bcrypt-ruby", :require => "bcrypt"
+
+# Gems used only for assets and not required
+# in production environments by default.
+group :assets do
+  gem 'sass-rails',   '~> 3.2.3'
+  gem 'coffee-rails', '~> 3.2.1'
+
+  # See https://github.com/sstephenson/execjs#readme for more supported runtimes
+  # gem 'therubyracer'
+
+  gem 'uglifier', '>= 1.0.3'
+end
+
+gem 'therubyracer' 					# Required for ExecJS which is used by other gems. 
+									# Dependency install fails sometimes. 
+gem 'jquery-rails'
+gem 'nokogiri', '~> 1.4.7'			# Used to parse HTML/XML using native execution. AKA quickly.
+gem 'feedzirra', '~> 0.0.31' 		# RSS feed parsing
+gem 'delayed_job_active_record'		# Used for background work. Very simple concurrency.
+gem 'gmaps4rails'
+gem "twitter-bootstrap-rails"
+gem 'bootstrap-sass'
+gem 'rmagick'						#NDVI Processing
+# DEVELOPMENT ONLY GEMS.
+# Will shift SQLite3 here once we're going production.
+gem "nifty-generators", :group => :development
+# just a handy thing to comment the db columns into the model files.
+gem "annotate", :group => :development
+gem "mechanize"
+# To use ActiveModel has_secure_password
+# gem 'bcrypt-ruby', '~> 3.0.0'
+
+# To use Jbuilder templates for JSON
+# gem 'jbuilder'
+
+# Use unicorn as the app server
+# gem 'unicorn'
+
+# Deploy with Capistrano
+# gem 'capistrano'
+
+# To use debugger
+# gem 'ruby-debug19', :require => 'ruby-debug'
+
+gem "mocha", :group => :test
+gem 'rspec-rails', :group => :test # tests
+#gem 'rmagick', :group => :test # tests
+# to install you need "imagemagick-devel", can install from
+

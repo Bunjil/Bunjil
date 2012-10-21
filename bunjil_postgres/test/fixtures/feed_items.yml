@@ -1,0 +1,22 @@
+# == Schema Information
+#
+# Table name: feed_items
+#
+#  id         :integer          not null, primary key
+#  scene_id   :string(255)
+#  link       :string(255)
+#  feed_id    :integer
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+fi1:
+  scene_id: LE71270622012278EDC00
+  link: "http://earthexplorer.usgs.gov/form/metadatalookup/?collection_id=3373&entity_id=LE71270622012278EDC00&pageView=1"
+#  title: "Path 138, Row 207 2012-07-13 at 05:30:35 GMT"
+#  link: "http://earthexplorer.usgs.gov/form/metadatalookup/?collection_id=3373&#x26;entity_id=LE71382072012195EDC00&#x26;pageView=1"
+  feed: :feed1
+# FeedItem.create title: "Path 138, Row 207 2012-07-13 at 05:30:35 GMT",
+#  link: "http://earthexplorer.usgs.gov/form/metadatalookup/?collection_id=3373&#x26;entity_id=LE71382072012195EDC00&#x26;pageView=1"

@@ -1,0 +1,17 @@
+<% title "Sign up" %>
+
+<p>Already have an account? <%= link_to "Log in", login_path %>.</p>
+
+<div id="role-select-view">
+	<h1>I am a...</h1>
+	<a class="btn btn-large btn-primary" onclick="signUpSelect('volunteer')">Volunteer</a>
+	<a class="btn btn-large btn-success" onclick="signUpSelect('subscriber')">Subscriber</a>
+</div>
+
+<div id="volunteer-form-view" style="display:none">
+	<%= render :partial => 'form' %>
+</div>
+
+<div id="subscriber-form-view" style="display:none">
+	<%= render :partial => 'form_subscriber' %>
+</div>

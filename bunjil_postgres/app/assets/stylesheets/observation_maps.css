@@ -1,0 +1,8 @@
+.obs_map img{
+  max-width: none;
+}
+
+.obs_map {
+  width: 600px;
+  height: 600px;
+}

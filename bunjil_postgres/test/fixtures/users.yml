@@ -1,0 +1,23 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id            :integer          not null, primary key
+#  username      :string(255)
+#  email         :string(255)
+#  password_hash :string(255)
+#  password_salt :string(255)
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#  area_id       :integer
+#  role_id       :integer
+#  description   :text(255)
+#
+
+utest:
+  username: test
+  email: test@test.com
+  password_hash: $2a$10$G5Kiw30ydqfhUz2QKPA3Xu4h7.eZ5paFTSt6jqB0FR5Ck0u7jyfOi
+  password_salt: $2a$10$G5Kiw30ydqfhUz2QKPA3Xu
+  area: :a1
+#pass: asdf
