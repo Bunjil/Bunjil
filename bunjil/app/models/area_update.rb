@@ -98,7 +98,21 @@ class AreaUpdate < ActiveRecord::Base
 
       i=intersections.new intersect
       i.area=area
+      # choose a volunteer
+      users_with_area = User.joins(:area).where({:area_id => area})
+      vol = nil
+      users_with_area.each do |u|
+        vol = u if u.is_volunteer?
+      end
+      if vol.nil?
+        logger.debug " No volunteers are looking at this area!!!!! Even though a local group is!! This update will now be destroyed and go to waste."
+        return false
+      else
+        i.user = vol
+        logger.debug " Assigning this update to #{vol.username}" 
+      end
       i.save
+
       logger.debug " New with: #{intersect}."
       true
     else

@@ -32,6 +32,7 @@ class User < ActiveRecord::Base
 
   belongs_to :role
   belongs_to :area
+  has_many :intersections # volunteers are reporting on these
 
   # login can be either username or email address
   def self.authenticate(login, pass)

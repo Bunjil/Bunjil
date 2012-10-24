@@ -5,9 +5,15 @@ class Mailer < ActionMailer::Base
   default from: "notifications@bunjil.com" # has no effect atm
 def send_report(report, to)
   @report = report
-  @name = "test user"
+  @name = "user"
   @home_url  = "http://bunjil.com/"
-  mail(:to => to, :subject => "Area Report.")
+  mail(:to => to, :subject => "Area Report")
+end
+def request_report(to, user, intersection)
+  @report = report
+  @name = user.username
+  @home_url  = "http://bunjil.com/"
+  mail(:to => to, :subject => "Report Request")
 end
 
 end
