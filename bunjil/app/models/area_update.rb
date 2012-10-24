@@ -110,6 +110,12 @@ class AreaUpdate < ActiveRecord::Base
       else
         i.user = vol
         logger.debug " Assigning this update to #{vol.username}" 
+        logger.debug " Emailing #{vol.email} ..." 
+        begin
+           Mailer.request_report(vol, i).deliver
+         rescue Exception => e
+          logger.debug " FAILED TO SEND THE EMAIL. #{e}" 
+         end 
       end
       i.save
 
