@@ -1,7 +1,7 @@
 class AreasController < ApplicationController
 
   def create
-    if current_user.is_subscriber?
+   if current_user.is_subscriber?
     	area = Area.new
     	area.attributes = params[:area]
     	if area.save
@@ -10,10 +10,11 @@ class AreasController < ApplicationController
         flash[:success] = "Area created successfully!"
     	else
         @area.errors.full_messages.each do |msg|
-        if flash[:alert].nil?
-          flash[:alert] = msg + "|"
-        else
-          flash[:alert] << msg + "|"
+          if flash[:alert].nil?
+            flash[:alert] = msg + "|"
+          else
+            flash[:alert] << msg + "|"
+          end
         end
       end
     else

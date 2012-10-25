@@ -12,6 +12,7 @@ class ReportsController < ApplicationController
   def email
     @report=Report.find(params[:id])
     Mailer.send_report(@report, "bunjilforestwatch@gmail.com").deliver
+    @report.intersection.reported=true
     render 'reports/email_result'
   end
 end

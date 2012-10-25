@@ -21,6 +21,7 @@ class Intersection < ActiveRecord::Base
   
   belongs_to :area_update
   belongs_to :area
+  belongs_to :user # this is it's volunteer
 
   after_initialize :init
 
