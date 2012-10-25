@@ -42,6 +42,7 @@ class ImageProcessorJob
     File.delete(red_path)
     File.delete(nir_path)
     area_update.image_url = destination
+    area_update.save
   end
 
   #Returns the NDVI to Color map result for each pixel's NDVI
