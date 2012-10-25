@@ -23,7 +23,7 @@ class ImageDownloaderJob
   NUMBER_OF_THREADS = 2
   NUMBER_OF_RETRIES = 3
   ARCHIVE_PATH = ""
-  IMAGE_PATH =""
+  IMAGE_PATH ="public/images"
 
   def perform
     threads = []

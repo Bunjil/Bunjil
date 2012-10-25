@@ -102,7 +102,7 @@ class AreaUpdate < ActiveRecord::Base
       users_with_area = User.joins(:area).where({:area_id => area})
       vol = nil
       users_with_area.each do |u|
-        vol = u if u.is_volunteer?
+        vol = u if u && u.is_volunteer?
       end
       if vol.nil?
         logger.debug " No volunteers are looking at this area!!!!! Even though a local group is!! This update will now be destroyed and go to waste."
