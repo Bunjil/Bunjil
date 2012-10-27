@@ -1,6 +1,6 @@
-/
+=begin
 An area update is the relevant information required to update an area pulled from a feed.
-/
+=end
 # == Schema Information
 #
 # Table name: area_updates

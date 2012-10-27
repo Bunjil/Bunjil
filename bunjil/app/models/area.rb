@@ -1,6 +1,6 @@
-/
+=begin
 An area is a subscribed location in the system.
-/
+=end
 # == Schema Information
 #
 # Table name: areas
