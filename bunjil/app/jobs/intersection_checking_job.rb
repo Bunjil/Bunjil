@@ -1,6 +1,6 @@
-/
+=begin
 The intersection checking job triggers all need Area Updates to check for and create Intersections.
-/
+=end
 class IntersectionCheckingJob
   # this is not a static method for concurrency purposes.
   def perform (area_updates, autoDL=false)

@@ -1,6 +1,6 @@
-/
+=begin
 The RSS reader job handles new items in the feed and any other jobs needed to be run with data from the new items.
-/
+=end
 require 'feedzirra'
 require 'nokogiri'
 
