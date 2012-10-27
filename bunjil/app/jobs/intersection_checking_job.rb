@@ -2,7 +2,8 @@
 The intersection checking job triggers all need Area Updates to check for and create Intersections.
 /
 class IntersectionCheckingJob
-  def self.perform (area_updates, autoDL=false)
+  # this is not a static method for concurrency purposes.
+  def perform (area_updates, autoDL=false)
     ActiveRecord::Base.logger.debug 'Running IntersectionCheckingJob'
     ActiveRecord::Base.logger.debug 'Will call image downloader when done!' if autoDL
     area_updates.each do |area_update|

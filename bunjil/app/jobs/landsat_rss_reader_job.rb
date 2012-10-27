@@ -34,7 +34,7 @@ class LandsatRssReaderJob
     end
 
     ActiveRecord::Base.logger.debug "Calling intersection checking job with #{area_updates.count} new area updates."
-    IntersectionCheckingJob.perform area_updates, autoDL
+    IntersectionCheckingJob.new.perform area_updates, autoDL
     area_updates
   end
 
