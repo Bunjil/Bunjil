@@ -15,7 +15,7 @@ class ImageProcessorJob
 
   #Takes a red image and near infrared image and performs NDVI Calculation
   def perform(area_update, red_path, nir_path)
-    destination = red_path +  '_ndvi.tif'
+    destination = red_path +  '_ndvi.jpg'
 
     red_image = ImageList.new(red_path)
     nir_image = ImageList.new(nir_path)
@@ -31,16 +31,53 @@ class ImageProcessorJob
         ndvi_pixel = color_result(ndvi)
         ndvi_image.pixel_color(x, y, ndvi_pixel)
       end
-      #if (((x + 1) * y) % 500) == 0
-      #  processed = ((x + 1) * y)
-      #  total = red_image.columns * red_image.rows
-      #  puts processed.to_s + ' / ' + total.to_s + ' pixels processed....(' + ((processed.to_f/total.to_f)*100).round(0).to_s + '%)'
-      #end
+      if (((x + 1) * y) % 500) == 0
+        processed = ((x + 1) * y)
+        total = red_image.columns * red_image.rows
+        puts processed.to_s + ' / ' + total.to_s + ' pixels processed....(' + ((processed.to_f/total.to_f)*100).round(0).to_s + '%)'
+      end
     end
 
   	ndvi_image.write(destination)
-    File.delete(red_path)
-    File.delete(nir_path)
+    #File.delete(red_path)
+    #File.delete(nir_path)
+    area_update.image_url = destination
+    area_update.save
+  end
+ 
+
+  def perform()
+    task = ImageProcessorTask.find(:first)
+    return if task.nil?
+    ImageProcessorTask.delete(task)
+
+    red_image = ImageList.new(task.red)
+    nir_image = ImageList.new(task.near_infrared)
+    ndvi_image = Image.new(red_image.columns, red_image.rows)
+    area_update = task.area_update
+
+    destination = task.red +  '_ndvi.jpg'
+
+    for x in 0..red_image.columns
+      for y in 0..red_image.rows
+        red_pixel = red_image.pixel_color(x, y).red
+        nir_pixel = nir_image.pixel_color(x, y).red
+
+        ndvi = calculate_ndvi(nir_pixel, red_pixel)
+
+        ndvi_pixel = color_result(ndvi)
+        ndvi_image.pixel_color(x, y, ndvi_pixel)
+      end
+      if (((x + 1) * y) % 500) == 0
+        processed = ((x + 1) * y)
+        total = red_image.columns * red_image.rows
+        puts processed.to_s + ' / ' + total.to_s + ' pixels processed....(' + ((processed.to_f/total.to_f)*100).round(0).to_s + '%)'
+      end
+    end
+
+    ndvi_image.write(destination)
+    #File.delete(red_path)
+    #File.delete(nir_path)
     area_update.image_url = destination
     area_update.save
   end
