@@ -11,30 +11,38 @@ class LandsatRssReaderJob
     ActiveRecord::Base.logger.debug "Fetching Feed... #{feed.name}"
     area_updates = []
     rss_data = Feedzirra::Feed.fetch_and_parse(feed.url)
-    
+
     # Note for some reason all tag names are different.
     # If the feed fails to be parsed/fetched, just give up.
-    return if rss_data.is_a?(Fixnum) 
-
-    rss_data.entries.each_with_index do |item,ind|
-      a = nil
-      
-      # Only new entries: ignore entries with duplicate scene id.
-      ActiveRecord::Base.logger.debug 'Reading an RSS feed item...'
-      
-      scene_id = item.summary.scan(/Scene ID: (\w*)/)[0][0]
-      if FeedItem.find_by_scene_id scene_id
-        ActiveRecord::Base.logger.debug "This Item already exists in the DB (scene id: #{scene_id})"
-      else
-        a=handle_new_item(item, feed.id) end 
-      
-      # only check ones that get saved.
-      area_updates.push(a) unless a==nil
-      break if ind == limit
-    end
+    #ActiveRecord::Base.logger.debug " #{rss_data}"
+    if (rss_data==0)
+     ActiveRecord::Base.logger.error " FAILED TO CONNECT TO Landsat RSS. It may be down, or maybe you don't have an Internet connection."
+     return
+   end
+    
+   begin
+      rss_data.entries.each_with_index do |item,ind|
+        a = nil
+        
+        # Only new entries: ignore entries with duplicate scene id.
+        ActiveRecord::Base.logger.debug 'Reading an RSS feed item...'
+        
+        scene_id = item.summary.scan(/Scene ID: (\w*)/)[0][0]
+        if FeedItem.find_by_scene_id scene_id
+          ActiveRecord::Base.logger.debug "This Item already exists in the DB (scene id: #{scene_id})"
+        else
+          a=handle_new_item(item, feed.id) end 
+        
+        # only check ones that get saved.
+        area_updates.push(a) unless a==nil
+        break if ind == limit
+      end
+    rescue Exception => e
+      logger.error " FAILED TO CONNECT TO Landsat RSS. Due to #{e}" 
+    end 
 
     ActiveRecord::Base.logger.debug "Calling intersection checking job with #{area_updates.count} new area updates."
-    IntersectionCheckingJob.new.perform area_updates, autoDL
+    IntersectionCheckingJob.new.call autoDL
     area_updates
   end
 
@@ -54,6 +62,7 @@ class LandsatRssReaderJob
       attrs=init_area_update(feed_item, item.summary)
       if area_update.init(attrs)
         ActiveRecord::Base.logger.debug " **** New Area Update added."
+        area_update.save
         return area_update
       else
         ActiveRecord::Base.logger.debug "Rejected due to cloud cover. (It is #{attrs[:cloud_cover]})"

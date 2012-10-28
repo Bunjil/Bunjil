@@ -50,7 +50,7 @@ describe LandsatRssReaderJob, "landsat_rss_reader_job" do
     false.should eq(attrs[:cloud_cover].blank?)
     false.should eq(attrs[:br_lon].blank?)
   end
-  it 'runs and makes the areaupdates for each intersection (assumes one of the latest 25 items meets cloud cover requirements)'.titleize do
+  it 'runs and makes the areaupdates for each intersection (assumes one of the latest 7 items meets cloud cover requirements)'.titleize do
     fis= FeedItem.count
     aus= AreaUpdate.count
     iss= Intersection.count
@@ -59,7 +59,7 @@ describe LandsatRssReaderJob, "landsat_rss_reader_job" do
     puts "feed items: #{FeedItem.count}"
     puts "intersections: #{Intersection.count}"
     puts "AreaUpdates: #{AreaUpdate.count}"
-    LandsatRssReaderJob.new.perform 5
+    LandsatRssReaderJob.new.perform 7, false
     #not always true (Intersection.count-iss).should eq(dif)
     puts "Area: #{Area.count}"
     puts "new feed items: #{FeedItem.count-fis}"
@@ -69,17 +69,19 @@ describe LandsatRssReaderJob, "landsat_rss_reader_job" do
     #true.should eq(AreaUpdate.count>aus)
     #true.should eq(Intersection.count>iss)
   end
-  it 'runs and makes no areaupdates or intersections with no matching areas'.titleize do
+  it 'runs and makes no intersections with no matching areas'.titleize do
+    Area.delete_all
+    Intersection.delete_all
+    AreaUpdate.delete_all
     fis= FeedItem.count
     aus= AreaUpdate.count
     iss= Intersection.count
-    Area.delete_all
     puts "makes no areaupdates?"
     puts "feed items: #{FeedItem.count}"
     puts "intersections: #{Intersection.count}"
     puts "AreaUpdates: #{AreaUpdate.count}"
-    LandsatRssReaderJob.new.perform 10
-    true.should eq(AreaUpdate.count==aus)
+    LandsatRssReaderJob.new.perform 2, false
+    true.should eq(Intersection.count==iss)
     dif=AreaUpdate.count-aus
     (Intersection.count-iss).should eq(dif)
     puts "feed items: #{FeedItem.count}"

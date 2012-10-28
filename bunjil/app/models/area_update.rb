@@ -36,8 +36,16 @@ class AreaUpdate < ActiveRecord::Base
   has_one :area_update_download_task
   belongs_to :feed_item
   has_many :intersections
+  after_initialize :defaults
 
-  @@min_cloud_cover = 40	# must be below this
+  @@min_cloud_cover = 40	# feed items must be below this value, else rejected.
+  def defaults
+    # Area Updates are saved to the database with a value 
+    # "has_been_intersection_checked" false by default, so the intersection 
+    # job can run without a list of area updates as a parameter.
+    #self.has_been_intersection_checked = false if has_been_intersection_checked.nil?
+  end
+
   # Getters
   def min_cloud_cover
   	@@min_cloud_cover
@@ -55,13 +63,17 @@ class AreaUpdate < ActiveRecord::Base
   end
   def handle
     #puts au.image_url
-    is_int=false
+    is_int=false      
+    self.has_been_intersection_checked = true
+    save
     Area.all.each do |a|
       is_int=true if find_intersection a
     end
     if is_int #if there was one or more intersections
-      save
       create_download_job # uses the image downloader
+    else
+      delete
+        # we don't need it at all.
     end
   end
 
