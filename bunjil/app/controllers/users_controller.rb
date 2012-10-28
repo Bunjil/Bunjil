@@ -55,6 +55,8 @@ class UsersController < ApplicationController
       else
         @area_update_old = last_intersection.area_update
         @area_update = intersection.area_update
+        @points=@area_update.get_points
+        @points_old=@area_update_old.get_points
         @report=Report.new
         @report.intersection = intersection
         @report.user = @user
