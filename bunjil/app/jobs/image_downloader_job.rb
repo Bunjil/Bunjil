@@ -105,7 +105,14 @@ class ImageDownloaderJob
   end
 
   def perform_ndvi(image_id, area_update)
-    ImageProcessorJob.new.perform(area_update,"#{IMAGE_PATH}#{image_id}_B3.TIF","#{IMAGE_PATH}#{image_id}_B4.TIF")
+    img_processor_task = ImageProcessorTask.new
+    img_processor_task.area_update = area_update
+    img_processor_task.red = "#{IMAGE_PATH}#{image_id}_B3.TIF"
+    img_processor_task.near_infrared = "#{IMAGE_PATH}#{image_id}_B4.TIF"
+    img_processor_task.save
+    ImageProcessorJob.new.perform()#TODO: move this to cron job when a worker is available
+    
+
   end
 
   def log_downloading_image(name)
