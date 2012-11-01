@@ -19,6 +19,6 @@ utest:
   email: "bunjilforestwatch@gmail.com"
   password_hash: $2a$10$G5Kiw30ydqfhUz2QKPA3Xu4h7.eZ5paFTSt6jqB0FR5Ck0u7jyfOi
   password_salt: $2a$10$G5Kiw30ydqfhUz2QKPA3Xu
-  area: :a1
-  role: vol
+  area: :a3
+  role: :vol
 #pass: asdf

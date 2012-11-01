@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121021032424) do
+ActiveRecord::Schema.define(:version => 20121024120227) do
 
   create_table "area_update_download_tasks", :force => true do |t|
     t.text     "image_archive_url"
@@ -94,6 +94,7 @@ ActiveRecord::Schema.define(:version => 20121021032424) do
     t.integer  "y"
     t.integer  "w"
     t.integer  "h"
+    t.integer  "user_id"
   end
 
   create_table "reports", :force => true do |t|

@@ -22,7 +22,7 @@ module ApplicationHelper
   end
 
   def tick_icon
-    "<i class='icon-ok icon-white'></i>"
+    "Select"
   end
 
 end

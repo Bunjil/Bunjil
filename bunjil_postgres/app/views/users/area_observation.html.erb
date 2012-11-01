@@ -1,9 +1,8 @@
 <% content_for :head do %>
     <%= javascript_include_tag "http://maps.googleapis.com/maps/api/js?v=3.9&sensor=false" %>
-    <%= javascript_include_tag "observation_maps.js" %>
     <script type="text/javascript">
       google.maps.event.addDomListener(window, 'load', function() {
-        initialize(<%= @area_update.tl_lat %>, <%= @area_update.tl_lon %>, <%= @area_update.br_lat %>, <%= @area_update.br_lon %>, <%= @area_update_old.tl_lat %>, <%= @area_update_old.tl_lon %>, <%= @area_update_old.br_lat %>, <%= @area_update_old.br_lon %>, "<%= @area_update.image_url %>", "<%= @area_update_old.image_url %>");
+        initialize(<%= @points[:y] %>, <%= @points[:x] %>, <%= @points[:y] + @points[:height] %>, <%=  @points[:x] + @points[:width] %>, <%= @points_old[:y] %>, <%= @points_old[:x] %>, <%= @points_old[:y] + @points_old[:height] %>, <%= @points_old[:x] + @points_old[:width] %>, "<%= @area_update.image_url %>", "<%= @area_update_old.image_url %>");
       });
     </script>
 <% end %>

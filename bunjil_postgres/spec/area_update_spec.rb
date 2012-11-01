@@ -70,7 +70,7 @@ describe AreaUpdate, "area_update" do
   end
   it "intersection gets added.".titleize do
     n=Intersection.count
-    a1 = areas(:a1)
+    a1 = areas(:a3)
     au=area_updates(:au1)
     au.find_intersection a1
     # none are added.
