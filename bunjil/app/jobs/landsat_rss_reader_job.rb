@@ -40,9 +40,10 @@ class LandsatRssReaderJob
     rescue Exception => e
       logger.error " FAILED TO CONNECT TO Landsat RSS. Due to #{e}" 
     end 
-
-    ActiveRecord::Base.logger.debug "Calling intersection checking job with #{area_updates.count} new area updates."
-    IntersectionCheckingJob.new.call autoDL
+    if autoDL
+      ActiveRecord::Base.logger.debug "Calling intersection checking job with #{area_updates.count} new area updates."
+      IntersectionCheckingJob.new.call autoDL
+    end
     area_updates
   end
 

@@ -1,0 +1,37 @@
+/This shows the state of all backend jobs and allows you to manage them individually.
+%h1 Job Dashboard
+%p This allows you to run all backend jobs individually and monitor their output.
+=button_to "Run everything in a series", '/demo', class: 'btn btn-danger'
+%a.btn{href: '/clear'} Clear all pending tasks
+
+%h2 RSS job
+=form_tag({:controller => "demo", :action => "rss"}) do
+  Number of items? (-1 to check every item)
+  =number_field("items", :items, value: 5, in: -1...999, style: "width:34px;")
+  =submit_tag "Run Job", :class => 'btn btn-primary'
+/=button_to 'Run Job', '/rss', class: 'btn btn-primary'
+%h3 Valid area updates created from RSS:
+%ol
+  -@tasks[:inte].each do |item|
+    %li= "#{item.feed_item.scene_id} (#{item.created_at.to_datetime})"
+/%a.btn{href: '/clear_feed'} Clear all feed items
+
+%hr
+%h2 Intersection job
+=button_to 'Run Job', '/intersection_check', class: 'btn btn-primary'
+%h3 Images to download created from the Intersection check:
+%ol
+  -@tasks[:down].each do |item|
+    %li= "#{item.area_update.feed_item.scene_id} (#{item.created_at.to_datetime})" 
+
+%hr
+%h2 Downloader job
+=button_to 'Run Job', '/downloader', class: 'btn btn-primary'
+%h3 Images to process created from the Downloader:
+%ol
+  -@tasks[:proc].each do |item|
+    %li= "#{item.area_update.feed_item.scene_id} (#{item.created_at.to_datetime})"
+
+%hr
+%h2 Processor job
+=button_to 'Run Job', '/processor', class: 'btn btn-primary'

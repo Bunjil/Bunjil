@@ -13,7 +13,7 @@
 class FeedItem < ActiveRecord::Base
   validates_uniqueness_of :scene_id
   belongs_to :feed
-  has_many :area_updates
+  has_many :area_updates, :dependent => :destroy
 
   after_initialize :init
   def init

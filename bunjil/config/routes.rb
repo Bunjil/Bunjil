@@ -8,6 +8,14 @@ Bunjil::Application.routes.draw do
 
   match 'demo' => 'demo#start'
 
+  match 'job_dash' => 'static#job_dash'
+  match 'rss' => 'demo#rss'
+  match 'intersection_check' => 'demo#intersection_check'
+  match 'downloader' => 'demo#downloader'
+  match 'processor' => 'demo#processor'
+  match 'clear' => 'demo#clear'
+  match 'clear_feed' => 'demo#clear_feed'
+
   match 'signup' => 'users#new', :as => :signup
 
   match 'logout' => 'sessions#destroy', :as => :logout

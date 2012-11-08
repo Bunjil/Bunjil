@@ -33,7 +33,8 @@ class AreaUpdate < ActiveRecord::Base
 # attr_accessor :tl_lat, :br_lat, :tr_lat, :bl_lat, 
 	# :tl_lon, :br_lon, :tr_lon, :bl_lon, :cloud_cover, :feed_item_id
 
-  has_one :area_update_download_task
+  has_one :area_update_download_task, :dependent => :destroy
+  has_one :image_processor_task, :dependent => :destroy
   belongs_to :feed_item
   has_many :intersections
   after_initialize :defaults
