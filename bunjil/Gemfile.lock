@@ -66,6 +66,7 @@ GEM
       rdoc (~> 3.8)
       sax-machine (~> 0.0.20)
     gmaps4rails (1.5.5)
+    haml (3.1.7)
     hike (1.2.1)
     i18n (0.6.0)
     journey (1.0.4)
@@ -189,6 +190,7 @@ DEPENDENCIES
   delayed_job_active_record
   feedzirra (~> 0.0.31)
   gmaps4rails
+  haml
   jquery-rails
   mechanize
   mocha
